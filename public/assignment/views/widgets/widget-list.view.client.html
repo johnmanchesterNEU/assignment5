@@ -1,0 +1,61 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <a href="#/user/{{model.uid}}/website/{{model.wid}}/page" class="navbar-text navbar-link pull-left">
+            <span class="glyphicon glyphicon-chevron-left">
+            </span>
+        </a>
+        <a href="#" class="pull-left navbar-brand">
+            Widgets
+        </a>
+        <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/new" class="navbar-link navbar-text pull-right">
+                  <span class="glyphicon glyphicon-plus">
+                  </span>
+        </a>
+    </div>
+</nav>
+<div class="container">
+    <div class="jga-widget" ng-repeat="widget in model.widgets" ng-switch on="widget.widgetType">
+        <div class="jga-widget-tool up-vid">
+            <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}"><span class="glyphicon glyphicon-cog"></span></a>
+            <span class="glyphicon glyphicon-align-justify"></span>
+        </div>
+
+        <!-- Bind each widget type to its own html here and view it on widgetType switch-->
+
+        <div ng-switch-when="HEADER">
+            <div ng-include src="'views/widgets/header.view.client.html'"></div>
+        </div>
+
+        <div ng-switch-when="IMAGE">
+            <div ng-include src="'views/widgets/image.view.client.html'"></div>
+        </div>
+
+        <!-- Use the responsive div iframe tags-->
+        <div ng-switch-when="YOUTUBE">
+            <div ng-include src="'views/widgets/youtube.view.client.html'"></div>
+        </div>
+
+        <!-- Bind to the HTML to the div tag-->
+        <div ng-switch-when="HTML">
+            <div ng-include src="'views/widgets/html.view.client.html'"></div>
+        </div>
+
+
+    </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <a class="navbar-text navbar-link pull-left">
+            <span class="glyphicon glyphicon-play">
+            </span>
+        </a>
+        <a class="navbar-brand navbar-link pull-left">
+            <span class="glyphicon glyphicon-eye-open">
+            </span>
+        </a>
+        <a href="#/profile/{{model.uid}}" class="navbar-center pull-right">
+            <span class="glyphicon glyphicon-user"></span>
+        </a>
+    </div>
+</nav>

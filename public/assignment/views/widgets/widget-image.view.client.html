@@ -1,0 +1,51 @@
+<form>
+        <div class="form-group">
+            <label for="image-name">Name</label>
+            <input ng-model="model.widget.name"
+                   type="text"
+                   class="form-control"
+                   id="image-name"
+                   value="Name"
+                   placeholder="Name">
+        </div>
+        <div class="form-group">
+            <label for="image-text">Title</label>
+            <input ng-model="model.widget.text"
+                   type="text"
+                   class="form-control"
+                   id="image-text"
+                   value="Text"
+                   placeholder="Flavor Text">
+        </div>
+        <div class="form-group">
+            <label for="image-url">URL</label>
+            <input ng-model="model.widget.url"
+                   type="url"
+                   class="form-control"
+                   id="image-url"
+                   value="https://someranddomwebsite.some/someimage.png"
+                   placeholder="YouTube URL">
+        </div>
+        <div class="form-group">
+            <label for="image-width">Size</label>
+            <input ng-model="model.widget.width"
+                   type="text"
+                   class="form-control"
+                   id="image-width"
+                   value="100%"
+                   placeholder="100%">
+        </div>
+
+        <div class="form-group">
+            <label for="myfile">
+                Upload
+            </label>
+            <input type="file"
+                   id="myfile"
+                   class="form-control">
+            <label for="myfile"
+                   class="btn btn-primary  btn-block">
+                Upload Image
+            </label>
+        </div>
+</form>

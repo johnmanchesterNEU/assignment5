@@ -1,0 +1,102 @@
+<div class="container">
+    <h1>Register</h1>
+    <div class="alert  alert-danger alert-dismissible"
+         ng-if="model.success"
+         role="alert">
+        <button ng-click="model.close()"
+                type="button"
+                class="close"
+                data-dismiss="alert"
+                aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+        {{model.error}}
+    </div>
+    <form ng-model="userForm" name="userForm" ng-submit="model.submitForm(userForm.$valid)" novalidate>
+        <!-- novalidate prevents HTML5 validation since we will be validating ourselves -->
+        <!-- NAME -->
+        <div class="form-group">
+            <input ng-model="model.user.username"
+                   name="username"
+                   type="text"
+                   class="form-control"
+                   placeholder="username"
+                   id="username"
+                   ng-pattern-restrict="^[a-zA-Z0-9_\-]*$"
+                   pattern="[a-zA-Z0-9_\-]*$"
+                   required/>
+        </div>
+        <div class="form-group">
+            <input ng-model="model.user.password"
+                   name="password"
+                   type="password"
+                   class="form-control"
+                   placeholder="password"
+                   id="password"
+                   required/>
+        </div>
+        <div class="form-group">
+            <input ng-model="model.user.verify"
+                   name="verify"
+                   type="password"
+                   class="form-control"
+                   placeholder="verify password"
+                   id="verify"
+                   required/>
+        </div>
+
+        <div class="form-group">
+            <input ng-model="model.user.firstName"
+                   name="firstName"
+                   type="text"
+                   class="form-control"
+                   placeholder="John"
+                   id="firstName"
+                   ng-pattern-restrict="^[a-zA-Z\-]+$"
+                   pattern="^[a-zA-Z\-]+$"
+                   required/>
+        </div>
+
+        <div class="form-group">
+            <input ng-model="model.user.lastName"
+                   name="lastName"
+                   type="text"
+                   class="form-control"
+                   placeholder="Smith"
+                   id="lastName"
+                   ng-trim="false"
+                   ng-pattern-restrict="^[a-zA-Z\-]+$"
+                   pattern="^[a-zA-Z\-]+$"
+                   required/>
+        </div>
+
+        <div class="form-group">
+            <input ng-model="model.user.dateOfBirth"
+                   name="dateOfBirth"
+                   type="date"
+                   class="form-control"
+                   placeholder="1/1/1980"
+                   id="dateOfBirth"
+                   min="01-01-1900"
+                   required/>
+        </div>
+
+        <div class="form-group">
+            <input ng-model="model.user.email"
+                   name="email"
+                   type="email"
+                   class="form-control"
+                   placeholder="someemail@email.com"
+                   id="email"
+                   required/>
+        </div>
+
+        <button ng-submit="submitForm(userForm.$valid)"
+                ng-disabled="userForm.$invalid"
+                class="btn btn-primary btn-block"
+                type="submit">
+            Register
+        </button>
+        <a class="btn btn-danger btn-block"
+           href="#/login">Cancel</a>
+    </form>
+</div>
