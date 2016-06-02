@@ -10,7 +10,7 @@
         {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi", email: "professor@neu.edu" }
     ];
 
-    function UserService() {
+    function UserService($http) {
         var api = {
             createUser: createUser,
             findUserByCredentials: findUserByCredentials,
@@ -82,12 +82,10 @@
 
 
         function findUserByCredentials(username, password) {
-            for(var i in users) {
-                if(users[i].username === username && users[i].password === password) {
-                    return users[i];
-                }
-            }
-            return null;
+            var url = "/api/user?username="+username+"&password="+password;
+
+            return $http.get(url);
+//             return $http.get.URL;
         }
     }
 })();

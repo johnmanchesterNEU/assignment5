@@ -9,15 +9,18 @@ module.exports = function(app) {
 
     app.get("/api/user", getUsers);
     app.get("/api/user/:userId", findUserById);
+    // app.get("/api/user?username=username&password=password", findUserByCredentials);
 
     function findUserById(req, res) {
         var userId = req.params.userId;
         for(var i in users) {
             if(userId === users[i]._id) {
                 res.send(users[i]);
+                return true;
             }
         }
         res.send({});
+        return false;
     }
 
     function getUsers(req, res) {
@@ -32,19 +35,43 @@ module.exports = function(app) {
         }
     }
     function findUserByCredentials(username, password, res) {
+
         for(var u in users) {
             if(users[u].username === username && users[u].password === password) {
                 res.send(users[u]);
+
+
             }
         }
         res.send({});
     }
+
     function findUserByUsername(username, res) {
         for(var u in users) {
             if(users[u].username === username) {
                 res.send(users[u]);
+                return true;
             }
         }
         res.send({});
+        return false;
+    }
+
+    function updateUser(req){
+        var id = reg.param.userId;
+        var newUser = req.body;
+        for(var i in users) {
+            if(users[i]._id === id) {
+                users[i].firstName = newUser.firstName;
+                users[i].lastName = newUser.lastName;
+                users[i].password = newUser.password;
+                users[i].email = newUser.email;
+                res.send(200);
+                return true;
+            }
+        }
+        res.send(400);
+
+        return false;
     }
 };
