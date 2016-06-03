@@ -15,7 +15,27 @@
         vm.close = close;
 
         function init() {
-            vm.widget = WidgetService.findWidgetById(vm.wgid);
+            WidgetService
+                .findWidgetById(wid)
+                .then(function(response) {
+                    vm.widget = response.data;
+                    if(widget._id){
+
+                    }else {
+                        vm.error = "Wiget not found";
+                    }
+                });
+        /*    WidgetService
+                .findWidgetById()
+                .then(function(response){
+                    vm.widget = response.data;
+                    if(widget._id){
+
+                    }else {
+
+                    }
+            }*/
+
         }
 
         init();

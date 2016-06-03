@@ -1,7 +1,10 @@
 module.exports = function(app) {
 
     var userService = require("./services/user.services.server.js")(app);
+    var websiteService = require("./services/website.services.server")(app);
+    var widgetService = require("./services/widget.services.server")(app);
 
+    /*
     var users = [
         {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
         {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
@@ -26,5 +29,5 @@ module.exports = function(app) {
     app.get("/say/:message", function(req, res) {
         var msg = req.params["message"];
         res.send({message: msg});
-    });
+    });*/
 };

@@ -26,6 +26,17 @@
     {{model.error}}
 </div>
 <div class="container">
+    <div class="alert  alert-danger alert-dismissible"
+         ng-if="model.error"
+         role="alert">
+        <button ng-click="model.close()"
+                type="button"
+                class="close"
+                data-dismiss="alert"
+                aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+        {{model.error}}
+    </div>
     <form>
         <div class="form-group">
             <label for="website-name">Name</label>

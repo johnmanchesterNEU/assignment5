@@ -6,9 +6,9 @@
   "dependencies": {
     "body-parser": "^1.15.1",
     "express": "^4.13.4",
-    "jade": "^1.11.0",
     "mongoose": "^4.4.15",
     "multer": "^1.1.0",
+    "ng-pattern-restrict": "^0.2.1",
     "pug": "^2.0.0-alpha8"
   },
   "devDependencies": {},

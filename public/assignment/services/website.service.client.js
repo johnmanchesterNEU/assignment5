@@ -12,51 +12,15 @@
         {"_id": "789", "name": "Chess", "developerId": "234", description: "me"}
     ];
 
-    function WebsiteService() {
+    function WebsiteService($http) {
         var api = {
             createWebsite: createWebsite,
-            findWebsitesForUserId: findWebsitesForUserId,
-            findWebsiteIndex: findWebsiteIndex,
+            findAllWebsitesForUser: findAllWebsitesForUser,
+            findWebsiteById: findWebsiteById,
             deleteWebsite: deleteWebsite,
-            updateWebsite: updateWebsite,
-            findWebsiteUserWebsiteId: findWebsiteUserWebsiteId
+            updateWebsite: updateWebsite
         };
         return api;
-
-        function findWebsiteUserWebsiteId(userId, websiteId) {
-            for (var i in websites) {
-                if (websites[i]._id === websiteId && websites[i].developerId === userId) {
-                    return websites[i];
-                }
-            }
-            return null;
-        }
-
-        function findWebsiteIndex(websiteId) {
-            for (var i in websites) {
-                if (websites[i]._id === websiteId) {
-                    return i;
-                }
-            }
-            return -1;
-        }
-
-        function updateWebsite(websiteId, website) {
-            var index = findWebsiteIndex(websiteId);
-            websites[index].name = website.name;
-            websites[index].description = website.description;
-            return (index != -1)? true : false;
-        }
-
-        function deleteWebsite(websiteId) {
-            for (var i in websites) {
-                if (websites[i]._id === websiteId) {
-                    websites.splice(i, 1);
-                    return true;
-                }
-            }
-            return false;
-        }
 
         function createWebsite(developerId, website) {
             var newWebsite = {
@@ -65,18 +29,44 @@
                 description: website.description,
                 developerId: developerId
             };
-            websites.push(newWebsite);
-            return newWebsite;
+
+            //POST ///api/user/:userId/website  //createWebsite
+
+            console.log(newWebsite);
+            var url = "/api/user/" + developerId + "/website";
+            //return $http.post("/api/user", user);
+            //app.post("/api/user/:userId/website", createWebsite);
+            return $http.post(url, newWebsite);
+            //websites.push(newWebsite);
+            //return newWebsite;
         }
 
-        function findWebsitesForUserId(userId) {
-            var resultSet = [];
-            for (var i in websites) {
-                if (websites[i].developerId === userId) {
-                    resultSet.push(websites[i]);
-                }
-            }
-            return resultSet;
+
+        function findAllWebsitesForUser(userId) {
+            ///api/user/:userId/website
+            var url = "/api/user/" + userId + "/website/";
+            return $http.get(url);
+        }
+
+
+        function findWebsiteById(websiteId) {
+            // /api/website/:websiteId
+            var url = "/api/website/" + websiteId;
+            return $http.get(url);
+        }
+
+        function updateWebsite(websiteId, website) {
+            console.log(websiteId);
+            console.log(website.name);
+            console.log(website.description);
+            var url = "/api/website/" + websiteId;
+            return $http.put(url, website);
+        }
+
+
+        function deleteWebsite(websiteId) {
+            var url = "/api/website/" + websiteId;
+            return $http.delete(url);
         }
     }
 })();

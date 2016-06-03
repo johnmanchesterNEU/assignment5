@@ -12,15 +12,21 @@
         { "_id": "91011", "name": "Post 2", "websiteId": "789", "title": "last" }
     ];
 
-    function PageService() {
+    function PageService($http) {
         var api = {
             createPage: createPage,
             findPages: findPages,
             findPage: findPage,
             deletePage: deletePage,
-            updatePage: updatePage
+            updatePage: updatePage,
+            findAllPagesForWebsite:findAllPagesForWebsite
         };
         return api;
+
+        function findAllPagesForWebsite(websiteId){
+            var url = "/api/website/"+websiteId+"/page";
+            return $http.get(url);
+        }
 
         function updatePage(pageId, page){
             for(var i in pages) {

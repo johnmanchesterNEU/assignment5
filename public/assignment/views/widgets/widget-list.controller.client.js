@@ -15,6 +15,8 @@
         function init() {
            // alert(vm.uid);
             vm.widgets = WidgetService.findWidgetsByPageId(vm.pid);
+            $(".container")
+                .sortable;
           //  alert(vm.widgets);
         }
         init();

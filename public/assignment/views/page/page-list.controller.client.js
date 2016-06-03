@@ -10,7 +10,12 @@
         vm.init = init;
 
         function init() {
-            vm.pages = PageService.findPages(vm.wid);
+            PageService
+                .findAllPagesForWebsite(vm.wid)
+                .then(function(response) {
+                    vm.user = response.data;
+                });
+            //vm.pages = PageService.findPages(vm.wid);
         }
         init();
 

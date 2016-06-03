@@ -23,6 +23,17 @@
         <span aria-hidden="true">&times;</span></button>
         <strong>Success!</strong> Your profile was saved.
     </div>
+    <div class="alert alert-warning alert-dismissible"
+         ng-if="model.error"
+         role="alert">
+        <button ng-click="model.close()"
+                type="button"
+                class="close"
+                data-dismiss="alert"
+                aria-label="Close"></button>
+        <span aria-hidden="true">&times;</span></button>
+        <strong>Error!</strong> User not found.
+    </div>
     <form name="profile">
         <div class="form-group">
             <label for="username">
@@ -88,6 +99,8 @@
     </form>
     <a class="btn btn-primary btn-block"
        href="#/user/{{model.user._id}}/website">Websites</a>
+    <a class="btn btn-warning btn-block"
+       ng-click="model.unregister()">Unregister</a>
     <a class="btn btn-danger  btn-block"
        href="#/login">Logout</a>
 </div>

@@ -8,41 +8,26 @@
         var vm = this;
 
         vm.login = login;
+        vm.close = close;
+
+
+        function close(){
+            vm.error=false;
+        }
 
         function login(username, password){
             UserService
                 .findUserByCredentials(username,password)
                 .then(function(response){
                     var user = response.data;
+                    console.log(user);
                     if(user._id){
                         $location.url("/profile/" + user._id);
                     }else {
                         vm.error = "User not found";
                     }
             });
-            //var user = UserService.findUserByCredentials(username, password);
-            //   if(user) {
-            //      $location.url("/profile/" + user._id);
-            // } else {
-            //    vm.error = "User not found";
-            // }
         }
-
-
-    /*
-        function login (username, password) {
-            UserService
-                .findUserByUsernameAndPassword(username, password)
-                .then(function(response) {
-                    console.log(response);
-                    var user = response.data;
-                    if(user) {
-                        var id = user._id;
-                        $location.url("/profile/" + id);
-                    } else {
-                        vm.error = "User not found";
-                    }
-                });
-        }*/
+        
     }
 })();
