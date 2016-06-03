@@ -14,31 +14,46 @@
         vm.close = close;
 
         function init() {
-            vm.page = PageService.findPage(vm.pid);
+            PageService
+                .findPageById(vm.pid)
+                .then(function (response) {
+                    vm.page = response.data;
+                });
         }
+
         init();
 
-        function close(){
+        function close() {
             vm.success = false;
         }
 
-        function deletePage(pid){
-            var result = PageService.deletePage(pid);
-            if(result) {
-                $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/");
-            } else {
-                vm.error = "Unable to delete website";
-            }
+        function deletePage(pid) {
+            PageService
+                .deletePage(vm.pid)
+                .then(
+                    function (response) {
+                        $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/");
+                    },
+                    function (error) {
+                        vm.error = error.data;
+                        vm.success = true;
+                    }
+                )
+
         }
 
-        function updatePage(name, title) {
-            var result = PageService.updatePage(vm.pid, vm.page);
-            if(result){
-                $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/");
-            }else{
-                vm.success = true;
-                vm.error = "Page did not update";
-            }
+        function updatePage() {
+            PageService
+                .updatePage(vm.pid, vm.page)
+                .then(
+                    function (response) {
+                        // vm.success = "Page successfully updated";
+                        $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/");
+                    },
+                    function (error) {
+                        vm.error = error.data;
+                    }
+                )
         }
     }
 })();
