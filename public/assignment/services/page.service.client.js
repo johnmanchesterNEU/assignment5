@@ -24,6 +24,10 @@
         return api;
 
         function findAllPagesForWebsite(websiteId){
+            //var url = "/api/user/" + userId + "/website/";
+            //return $http.get(url);
+            ///api/website/:websiteId/page
+            //console.log(websiteId);
             var url = "/api/website/"+websiteId+"/page";
             return $http.get(url);
         }

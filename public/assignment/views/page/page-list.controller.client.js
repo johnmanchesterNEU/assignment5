@@ -13,7 +13,7 @@
             PageService
                 .findAllPagesForWebsite(vm.wid)
                 .then(function(response) {
-                    vm.user = response.data;
+                    vm.pages = response.data;
                 });
             //vm.pages = PageService.findPages(vm.wid);
         }
