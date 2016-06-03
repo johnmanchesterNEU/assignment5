@@ -9,7 +9,7 @@ module.exports = function (app) {
         {"_id": "91011", "name": "Post 2", "websiteId": "789", "title": "last"}
     ];
 
-    //app.post("/api/website/:websiteId/page", createPage);
+    app.post("/api/website/:websiteId/page", createPage);
     app.get("/api/website/:websiteId/page", findAllPagesForWebsite);
     //app.get("/api/page/:pageId", findPageById);
     //app.put("/api/page/:pageId", updatePage);
@@ -49,15 +49,18 @@ module.exports = function (app) {
         return false;
     }
 
-    function createPage(websiteId, page) {
+    function createPage(req, res) {
+        console.log("server " + req.body);
+        var page = req.body;
         var newPage = {
-            _id: (new Date()).getTime() + "",
+            _id: (new Date()).getTime()+"",
             name: page.name,
+            websiteId: page.websiteId,
             title: page.title,
-            websiteId: websiteId
         };
+
         pages.push(newPage);
-        return newPage;
+        res.json(newPage);
     }
 
     function findPageById(pageId) {

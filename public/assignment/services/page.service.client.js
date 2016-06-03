@@ -54,14 +54,19 @@
         }
 
         function createPage(websiteId, page) {
-            var newPage = {
-                _id: (new Date()).getTime()+"",
-                name: page.name,
-                title: page.title,
-                websiteId: websiteId
-            };
-            pages.push(newPage);
-            return newPage;
+           // var newPage = {
+           //     _id: (new Date()).getTime()+"",
+           //     name: page.name,
+            //    websiteId: websiteId,
+             //   title: page.title,
+            //};
+            page.websiteId = websiteId;
+            console.log("sss " + websiteId);
+            console.log(page);
+            var url = "/api/website/"+websiteId+"/page";
+            return $http.post(url, page);
+           // pages.push(newPage);
+           // return newPage;
         }
 
         function findPage(pageId) {
