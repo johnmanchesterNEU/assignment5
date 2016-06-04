@@ -47,6 +47,13 @@ ul.borderless li{
     text-decoration: none;
 }
 
+.underline{
+    text-decoration: underline;
+}
+
+.strike{
+    text-decoration: line-through
+}
 .bold {
     font-weight: normal;
 }
@@ -70,4 +77,37 @@ ul.borderless li{
     padding-top: 5px;
     padding-bottom: 10px;
     color: red;
+}
+
+.no-indent{
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.top-buffer { margin-top:20px; }
+.wrap{
+    padding-bottom: 0.25em;
+}
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile + label {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: black;
+    display: inline-block;
+    cursor: pointer; /* "hand" cursor */
+
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: red;
 }

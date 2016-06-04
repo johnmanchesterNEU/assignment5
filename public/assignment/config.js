@@ -105,6 +105,12 @@
                 title: "Widget Chooser",
                 controllerAs: "model"
             })
+            .when("/flickr", {
+                templateUrl: "views/widgets/widget-flickr-search.view.client.html",
+                controller: "FlickrImageSearchController",
+                title: "Flickr Search",
+                controllerAs: "model"
+            })
             .otherwise({
                 redirectTo: "/login"
             });

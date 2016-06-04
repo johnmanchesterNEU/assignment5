@@ -1,7 +1,12 @@
 module.exports = function (app) {
+    var multer = require('multer'),
+        bodyParser = require('body-parser'),
+        path = require('path');
 
-    //var multer = require('multer');
-    // var upload = multer({dest: _dirname + '/public/uploads'});
+
+    var upload = multer({dest: __dirname + '/../../public/uploads'});
+    // app.set('views', path.join(__dirname, '/../../public/uploads'));
+    // app.set('view engine', 'jade');
 
     var widgets = [
         {
@@ -40,23 +45,30 @@ module.exports = function (app) {
         {"_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
     ];
 
+    app.post("/api/upload", upload.single('myFile'), uploadImage);
+
+
     app.post("/api/page/:pageId/widget", createWidget);
     app.get("/api/page/:pageId/widget", findAllWidgetsForPage);
     app.get("/api/widget/:widgetId", findWidgetById);
     app.put("/api/widget/:widgetId", updateWidget);
     app.delete("/api/widget/:widgetId", deleteWidget);
+    app.get("/api/widgets/", allWidgets);
 
+    function allWidgets(re, res) {
+        res.send(widgets);
+    }
 
-    function createWidget(req, res){
+    function createWidget(req, res) {
         var widget = req.body;
         var pageId = req.params.pageId;
         widget._id = (new Date()).getTime() + "";
         widget.pageId = pageId;
         //var newWidget = {
-         //   _id: (new Date()).getTime() + "",
-          //  widgetType: "HTML",
-           // pageId: "321",
-            //text: "PPPPPPPPPPP"
+        //   _id: (new Date()).getTime() + "",
+        //  widgetType: "HTML",
+        // pageId: "321",
+        //text: "PPPPPPPPPPP"
         //};
         widgets.push(widget);
         res.json(widget);
@@ -112,6 +124,55 @@ module.exports = function (app) {
             }
         }
         res.status(404).send("Unable to remove widget with ID: " + id);
+    }
+
+
+    function uploadImage(req, res) {
+        console.log(req.body);
+        console.log(req.file); //form files
+
+        var update = false;
+
+        var uid = req.body.uid;
+        var wid = req.body.wid;
+        var pid = req.body.pid;
+        var widgetType = req.body.type;
+
+        var widgetId = req.body.widgetId;
+        var width = req.body.width;
+        var myFile = req.file;
+
+        var originalname = myFile.originalname; // file name on user's computer
+        var filename = myFile.filename;     // new file name in upload folder
+        var path = myFile.path;         // full path of uploaded file
+        var destination = myFile.destination;  // folder where file is saved to
+        var size = myFile.size;
+        var mimetype = myFile.mimetype;
+
+        for (var i in widgets) {
+            if (widgets[i]._id === widgetId) {
+                update = true;
+                widgets[i].url = "/uploads/" + filename;
+                //widgets[i].pageId = pid;
+            }
+        }
+
+        if (!update) {
+            var newWidget = {
+                _id: filename,
+                url: "/uploads/" + filename,
+                pageId: pid,
+                width: width,
+                widgetType: widgetType
+            }
+            widgets.push(newWidget);
+        }
+
+        // res.send(202);
+        //views/widgets/widget-edit.view.client.html
+        // "#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget"
+        //res.redirect("/assignment/#/user/:uid/website/:wid/page/:pid/widget/");
+        res.redirect("/assignment/#/user/" + uid + "/website/" + wid + "/page/" + pid + "/widget/");
     }
 
 

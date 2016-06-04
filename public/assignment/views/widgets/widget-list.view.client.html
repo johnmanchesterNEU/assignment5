@@ -7,16 +7,18 @@
         <a href="#" class="pull-left navbar-brand">
             Widgets
         </a>
-        <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/new" class="navbar-link navbar-text pull-right">
+        <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/new"
+           class="navbar-link navbar-text pull-right">
                   <span class="glyphicon glyphicon-plus">
                   </span>
         </a>
     </div>
 </nav>
 <div class="container">
-    <div class="jga-widget" ng-repeat="widget in model.widgets" ng-switch on="widget.widgetType">
+    <div jga-sortable class="jga-widget" ng-repeat="widget in model.widgets" ng-switch on="widget.widgetType">
         <div class="jga-widget-tool up-vid">
-            <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}"><span class="glyphicon glyphicon-cog"></span></a>
+            <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}"><span
+                    class="glyphicon glyphicon-cog"></span></a>
             <span class="glyphicon glyphicon-align-justify"></span>
         </div>
 
@@ -39,8 +41,6 @@
         <div ng-switch-when="HTML">
             <div ng-include src="'views/widgets/html.view.client.html'"></div>
         </div>
-
-
     </div>
 </div>
 

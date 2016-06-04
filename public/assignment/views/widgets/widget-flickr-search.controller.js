@@ -6,8 +6,10 @@
     function FlickrImageSearchController(FlickrService) {
         var vm = this;
         vm.searchPhotos = searchPhotos;
+        vm.selectPhoto = selectPhoto;
 
         function searchPhotos(searchText) {
+            console.log(searchText);
             FlickrService
                 .searchPhotos(searchText)
                 .then(
@@ -22,5 +24,16 @@
                     }
                 );
         }
+
+        function selectPhoto(photo) {
+            var url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server;
+            url += "/" + photo.id + "_" + photo.secret + "_b.jpg";
+            WidgetService
+                .updateWidget(websiteId, pageId, widgetId, {url: url})
+                .then();
+        }
+
+
+
     }
 })();
