@@ -1,3 +1,4 @@
-/**
- * Created by John on 6/3/2016.
- */
+module.exports = function (app) {
+
+
+}

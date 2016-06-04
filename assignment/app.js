@@ -3,6 +3,7 @@ module.exports = function(app) {
     var websiteService = require("./services/website.services.server")(app);
     var websiteService = require("./services/page.services.server")(app);
     var widgetService = require("./services/widget.services.server")(app);
+    var flickrService = require("./services/flickr.services.server")(app);
 
     /*
     var users = [

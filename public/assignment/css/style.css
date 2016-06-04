@@ -84,6 +84,10 @@ ul.borderless li{
     margin-left: 0;
 }
 
+.buffer10{
+    margin-top:10px;
+}
+
 .top-buffer { margin-top:20px; }
 .wrap{
     padding-bottom: 0.25em;
@@ -110,4 +114,9 @@ ul.borderless li{
 .inputfile:focus + label,
 .inputfile + label:hover {
     background-color: red;
+}
+
+.ghost{
+    display: none;
+    visibility: collapse;
 }
