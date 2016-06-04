@@ -13,12 +13,17 @@
         vm.renderHtml = renderHtml;
 
         function init() {
-           // alert(vm.uid);
-            vm.widgets = WidgetService.findWidgetsByPageId(vm.pid);
-            $(".container")
-                .sortable;
-          //  alert(vm.widgets);
+            WidgetService
+                .findAllWidgetsForPage(vm.pid)
+                .then(function (response) {
+                    vm.widgets = response.data;
+                });
+
+            //vm.widgets = WidgetService.findWidgetsByPageId(vm.pid);
+          //  $(".container")
+               // .sortable;
         }
+
         init();
 
         //Get embedded html to work

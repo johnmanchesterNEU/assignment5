@@ -14,16 +14,16 @@
         return api;
 
         function createWebsite(developerId, website) {
-            var newWebsite = {
-                _id: (new Date()).getTime() + "",
-                name: website.name,
-                description: website.description,
-                developerId: developerId
-            };
+        //    var newWebsite = {
+         //       _id: (new Date()).getTime() + "",
+         //       name: website.name,
+         //       description: website.description,
+         //       developerId: developerId
+         //  };
 
             //POST ///api/user/:userId/website  //createWebsite
 
-            console.log(newWebsite);
+           // console.log(newWebsite);
             var url = "/api/user/" + developerId + "/website";
             //return $http.post("/api/user", user);
             //app.post("/api/user/:userId/website", createWebsite);

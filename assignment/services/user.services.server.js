@@ -62,7 +62,6 @@ module.exports = function(app) {
         for(var i in users) {
             if(userId === users[i]._id) {
                 res.send(users[i]);
-                return;
             }
         }
         res.send({});

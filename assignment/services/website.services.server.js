@@ -42,41 +42,41 @@ module.exports = function (app) {
 
     function findWebsiteById(req, res) {
         var id = req.params.websiteId;
-         for (var i in websites) {
-         if (websites[i]._id === id) {
-         res.send(websites[i]);
-         }
-         }
-         //return resultSet;
-         res.send(404);
+        for (var i in websites) {
+            if (websites[i]._id === id) {
+                res.send(websites[i]);
+            }
+        }
+        //return resultSet;
+        res.send(404);
     }
 
     function updateWebsite(req, res) {
         var id = req.params.websiteId;
         var updateWeb = req.body;
-        for(var i in websites) {
-            if(websites[i]._id === id) {
+        for (var i in websites) {
+            if (websites[i]._id === id) {
                 websites[i].name = updateWeb.name;
                 websites[i].description = updateWeb.description;
                 res.send(200);
                 return;
             }
         }
-        res.status(400).send("Website with ID: "+ id +" not found");
+        res.status(400).send("Website with ID: " + id + " not found");
         /*
-        var index = findWebsiteIndex(websiteId);
-        if(index != -1) {
-            websites[index].name = website.name;
-            websites[index].description = website.description;
-        }else {
-            res.send(404);
-        }*/
+         var index = findWebsiteIndex(websiteId);
+         if(index != -1) {
+         websites[index].name = website.name;
+         websites[index].description = website.description;
+         }else {
+         res.send(404);
+         }*/
     }
 
     function deleteWebsite(req, res) {
         var id = req.params.websiteId;
-        for(var i in websites) {
-            if(websites[i]._id === id) {
+        for (var i in websites) {
+            if (websites[i]._id === id) {
                 websites.splice(i, 1);
                 res.sendStatus(200);
                 return;

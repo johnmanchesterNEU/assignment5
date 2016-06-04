@@ -12,12 +12,6 @@
         vm.web = WebsiteService.websites;
 
         function init() {
-           /* UserService
-                .findUserById(id)
-                .then(function(response) {
-                    vm.user = response.data;
-                });*/
-
             WebsiteService
                 .findAllWebsitesForUser(vm.userId)
                 .then(function(response){
