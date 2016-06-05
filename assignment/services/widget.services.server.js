@@ -10,6 +10,13 @@ module.exports = function (app) {
 
     var widgets = [
         {
+            "_id": "012",
+            "widgetType": "HEADER",
+            "pageId": "432",
+            "size": 2,
+            "text": "GIZMODO"
+        },
+        {
             "_id": "123",
             "widgetType": "HEADER",
             "pageId": "321",
@@ -48,6 +55,12 @@ module.exports = function (app) {
     app.post("/api/upload", upload.single('myFile'), uploadImage);
 
 
+    // app.get("/api/user?username=username&password=password", findUserByCredentials);
+    //app.put("/page/:pageId/damn",reorderWidgets);
+    ///page/:pageId/widget?initial=:index1&final=:index2
+    ///page/:pageId/widget?initial=index1&final=index2
+    app.put("/page/:pageId/widget", reorderWidgets);
+    //app.post("/page/:pageId/widget?initial=:index1&final=:index2",reorderWidgets);
     app.post("/api/page/:pageId/widget", createWidget);
     app.get("/api/page/:pageId/widget", findAllWidgetsForPage);
     app.get("/api/widget/:widgetId", findWidgetById);
@@ -55,9 +68,65 @@ module.exports = function (app) {
     app.delete("/api/widget/:widgetId", deleteWidget);
     app.get("/api/widgets/", allWidgets);
 
-    function allWidgets(re, res) {
+    function allWidgets(req, res) {
         res.send(widgets);
     }
+
+    function reorderWidgets(req, res) {
+        var initialIndex = req.query.initial;
+        var finalIndex = req.query.final;
+        var pageId = req.params.pageId;
+        // console.log(pageId);
+        // var pageId = req.query.pageId;
+        var newWidget = req.body;
+
+        var start = null;
+        var end = null;
+        //var i = (initialIndex < finalIndex)? initialIndex : finalIndex;
+
+        if (initialIndex != finalIndex) {
+            var temp = newWidget[initialIndex];
+            newWidget.splice(initialIndex, 1);
+            newWidget.splice(finalIndex, 0, temp);
+        }else{
+            res.send(200)
+            return;
+        }
+        //newWidget.splice(finalIndex, 0, newWidget[initialIndex]);
+        //newWidget.insert(finalIndex, newWidget[initialIndex]);
+
+//        if (initialIndex < finalIndex) {
+        //          newWidget.splice(finalIndex, 0, temp);
+        //  newWidget.splice(finalIndex, 0, );
+        //newWidget.splice(initialIndex, 1);
+        //     } else if(initialIndex > finalIndex){
+        //newWidget.splice(initialIndex++, 1);
+        //        newWidget.splice(finalIndex, 0, temp);
+        //   }else{
+        //      res.send(200)
+        //     return;
+        //}
+
+
+        for (var i = widgets.length; i--;) {
+            if (widgets[i].pageId === pageId) widgets.splice(i, 1);
+        }
+
+        //   widgets = new Array();
+        //  for(var i in widgets){
+        //     if(widgets[i].pageId === pageId){
+        //       widgets.splice(i--, 1);
+        // i--;
+        //   }
+        //}
+        //remove(widgets,pageId);
+        widgets.push.apply(widgets, newWidget);
+
+
+        res.send(200)
+
+    }
+
 
     function createWidget(req, res) {
         var widget = req.body;
