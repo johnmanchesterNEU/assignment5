@@ -1,5 +1,5 @@
 (function(){
-    angular.module("WebAppMaker",["ngRoute","jgaSortable", "ngPatternRestrict", "compareTo"]);
+    angular.module("WebAppMaker",["ngRoute","jgaSortable", "ngPatternRestrict"]);
    // angular.module("WebAppMaker", ['ngPatternRestrict']);
 
 })();

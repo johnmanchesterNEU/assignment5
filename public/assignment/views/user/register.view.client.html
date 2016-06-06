@@ -41,7 +41,6 @@
                    class="form-control"
                    placeholder="verify password"
                    id="verify"
-                   compare-to="model.user.password"
                    required/>
         </div>
 
@@ -91,12 +90,12 @@
         </div>
 <!--^([\w!#$%&'*/~|`}{^+-]+(.|@)?)*$"-->
 
-        <button ng-submit="submitForm(userForm.$valid)"
+        <a ng-submit="submitForm(userForm.$valid)"
                 ng-disabled="userForm.$invalid"
                 class="btn btn-primary btn-block"
                 type="submit">
             Register
-        </button>
+        </a>
         <a class="btn btn-danger btn-block"
            href="#/login">Cancel</a>
     </form>
