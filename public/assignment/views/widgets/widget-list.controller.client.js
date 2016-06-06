@@ -44,8 +44,8 @@
                 //alert($('.iframefix').attr('name'));
                 $('.iframefix').css('display', 'block');
                 $('.iframefix').css('z-index', '50');
-                $( "#eye" ).removeClass( "glyphicon-eye-close");
-                $( "#eye" ).addClass( "glyphicon-eye-open");
+                $( "#eye" ).removeClass("glyphicon-eye-close");
+                $( "#eye" ).addClass("glyphicon-eye-open");
                 enableSortable();
             } else {
                 $('.iframefix').css('display', 'none');
