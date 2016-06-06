@@ -69,7 +69,7 @@
             WidgetService
                 .reorderWidget(vm.pid, vm.widgets, start, end)
                 .then(function (response) {
-                    //  vm.widgets = response.data;
+                      vm.widgets = response.data;
                 });
 
             // alert(start);
