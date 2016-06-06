@@ -105,7 +105,13 @@
                 title: "Widget Chooser",
                 controllerAs: "model"
             })
-            .when("/flickr", {
+            .when("/flickr/:uid/website/:wid/page/:pid", {
+                templateUrl: "views/widgets/widget-flickr-search.view.client.html",
+                controller: "FlickrImageSearchController",
+                title: "Flickr Search",
+                controllerAs: "model"
+            })
+            .when("/flickr/:uid/website/:wid/page/:pid/widget/:wgid", {
                 templateUrl: "views/widgets/widget-flickr-search.view.client.html",
                 controller: "FlickrImageSearchController",
                 title: "Flickr Search",

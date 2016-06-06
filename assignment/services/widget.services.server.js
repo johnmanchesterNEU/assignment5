@@ -60,12 +60,8 @@ module.exports = function (app) {
     app.post("/api/upload", upload.single('myFile'), uploadImage);
 
 
-    // app.get("/api/user?username=username&password=password", findUserByCredentials);
-    //app.put("/page/:pageId/damn",reorderWidgets);
-    ///page/:pageId/widget?initial=:index1&final=:index2
-    ///page/:pageId/widget?initial=index1&final=index2
+
     app.put("/page/:pageId/widget", reorderWidgets);
-    //app.post("/page/:pageId/widget?initial=:index1&final=:index2",reorderWidgets);
     app.post("/api/page/:pageId/widget", createWidget);
     app.get("/api/page/:pageId/widget", findAllWidgetsForPage);
     app.get("/api/widget/:widgetId", findWidgetById);
@@ -97,36 +93,10 @@ module.exports = function (app) {
             res.send(200)
             return;
         }
-        //newWidget.splice(finalIndex, 0, newWidget[initialIndex]);
-        //newWidget.insert(finalIndex, newWidget[initialIndex]);
-
-//        if (initialIndex < finalIndex) {
-        //          newWidget.splice(finalIndex, 0, temp);
-        //  newWidget.splice(finalIndex, 0, );
-        //newWidget.splice(initialIndex, 1);
-        //     } else if(initialIndex > finalIndex){
-        //newWidget.splice(initialIndex++, 1);
-        //        newWidget.splice(finalIndex, 0, temp);
-        //   }else{
-        //      res.send(200)
-        //     return;
-        //}
-
 
         for (var i = widgets.length; i--;) {
             if (widgets[i].pageId === pageId) widgets.splice(i, 1);
         }
-
-        //   widgets = new Array();
-        //  for(var i in widgets){
-        //     if(widgets[i].pageId === pageId){
-        //       widgets.splice(i--, 1);
-        // i--;
-        //   }
-        //}
-        //remove(widgets,pageId);
-        widgets.push.apply(widgets, newWidget);
-
 
         res.send(200)
 
@@ -138,15 +108,8 @@ module.exports = function (app) {
         var pageId = req.params.pageId;
         widget._id = (new Date()).getTime() + "";
         widget.pageId = pageId;
-        //var newWidget = {
-        //   _id: (new Date()).getTime() + "",
-        //  widgetType: "HTML",
-        // pageId: "321",
-        //text: "PPPPPPPPPPP"
-        //};
         widgets.push(widget);
         res.json(widget);
-        //return newWebsite;
     }
 
     //given: pageId

@@ -47,12 +47,10 @@
     <input  name="type" value="{{model.type}}"   style="display: none"/>
     <button type="submit"   ng-disabled="userForm.$invalid" id="file-submit" class="btn btn-block btn-primary" disabled>Upload Image</button>
 </form>
-
-{{model.widget}}
-{{model.uid}}
-{{model.pid}}
-{{model.wid}}
-{{model.type}}
-
-
-</form>
+<div class="form-group">
+    <!-- /flickr/:uid/website/:wid/page/:pid/widget/:wgid-->
+    <a href="#/flickr/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{model.wgid}}"
+       class="bold">
+       Choose a Flickr Image
+    </a>
+</div>

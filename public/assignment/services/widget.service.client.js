@@ -14,23 +14,14 @@
         };
         return api;
 
+        //reorders widget on server
         function reorderWidget(pageId, widget, initial, final) {
-           // /page/:pageId/widget?initial=:index1&final=:index2
-            //var url = "/page/:" + pageId + "/widget?initial=:" + index1 + "&final=:" + index2;
-            //
             var url = "/page/" + pageId + "/widget?initial=" + initial + "&final=" + final;
-            //app.put("/page/:pageId/widget?initial=:initial&final=:final",reorderWidgets);
-            //var url = "/page/"+pageId;   //+"/widget?initial="+initial+"&final="+final;
-            //var url = "/p/widget/" + 123;
-            //var url = "/page/"+pageId+"/widget";
             return $http.put(url, widget);
-
-            //return $http.put("/page/:pageId/widget?initial=:index1&final=:index2",                                       // 1. url
-            //    widget,                                                // 2. request body
-             //   { params: { pageId: pageId, initial : initial,final: final} });
         }
 
         function createWidget(pageId, widget) {
+            alert(widget.url);
             //console.log(widget);
             var url = "/api/page/" + pageId + "/widget";
             return $http.post(url, widget);
