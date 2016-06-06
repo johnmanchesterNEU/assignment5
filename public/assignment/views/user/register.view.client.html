@@ -90,12 +90,12 @@
         </div>
 <!--^([\w!#$%&'*/~|`}{^+-]+(.|@)?)*$"-->
 
-        <a ng-submit="submitForm(userForm.$valid)"
+        <button ng-submit="submitForm(userForm.$valid)"
                 ng-disabled="userForm.$invalid"
                 class="btn btn-primary btn-block"
                 type="submit">
             Register
-        </a>
+        </button>
         <a class="btn btn-danger btn-block"
            href="#/login">Cancel</a>
     </form>
