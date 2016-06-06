@@ -44,10 +44,14 @@
                 //alert($('.iframefix').attr('name'));
                 $('.iframefix').css('display', 'block');
                 $('.iframefix').css('z-index', '50');
+                $( "#eye" ).removeClass( "glyphicon-eye-close" );
+                $( "#eye" ).addClass( "glyphicon-eye-open" );
                 enableSortable();
             } else {
                 $('.iframefix').css('display', 'none');
                 $('.iframefix').css('z-index', '0');
+                $( "#eye" ).removeClass( "glyphicon-eye-open" );
+                $( "#eye" ).addClass( "glyphicon-eye-close" );
                 disableSortable();
             }
         }

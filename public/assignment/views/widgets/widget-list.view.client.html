@@ -55,8 +55,9 @@
             <span class="glyphicon glyphicon-play">
             </span>
         </a>
+        <!-- Editing is disabled by default --- click eye to edit --->
         <a ng-click="model.toggableEdit()" class="navbar-brand navbar-link pull-left hand">
-            <span class="glyphicon glyphicon-eye-open">
+            <span id="eye" class="glyphicon glyphicon-eye-close">
             </span>
         </a>
         <a href="#/profile/{{model.uid}}" class="navbar-center pull-right">
