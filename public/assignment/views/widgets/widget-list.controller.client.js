@@ -10,43 +10,72 @@
         vm.wid = $routeParams.wid;
         vm.pid = $routeParams.pid;
         vm.init = init;
+        vm.toggableEdit = toggableEdit;
+        var edit = false;
         //vm.update = update;
         vm.renderHtml = renderHtml;
+        vm.enableSortable = enableSortable;
+        vm.disableSortable = disableSortable;
 
         function init() {
+            //disableSortable();
             WidgetService
                 .findAllWidgetsForPage(vm.pid)
                 .then(function (response) {
                     vm.widgets = response.data;
-                });
+                    disableSortable();
+                    },
+                    function (error) {
+                        vm.error = error.data;
+                        vm.success = true;
+                    }
+                )
 
-            //vm.widgets = WidgetService.findWidgetsByPageId(vm.pid);
-          //  $(".container")
-               // .sortable;
         }
 
         init();
 
+        function toggableEdit() {
+            edit = !edit;
+            //alert($('.sortable'));
+            // $('.sortable').sortable('disable');
+            if (edit) {
+                // alert(edit);
+                //alert($('.iframefix').attr('name'));
+                $('.iframefix').css('display', 'block');
+                $('.iframefix').css('z-index', '50');
+                enableSortable();
+            } else {
+                $('.iframefix').css('display', 'none');
+                $('.iframefix').css('z-index', '0');
+                disableSortable();
+            }
+        }
 
+        function disableSortable() {
+            $('.container').sortable('disable');
+        }
+
+        function enableSortable() {
+            $('.container').sortable('enable');
+        }
 
         //scope.fun.start(start,end);
-        $scope.ctrlFn = function(start, end) {
+        $scope.ctrlFn = function (start, end) {
             WidgetService
-                .reorderWidget(vm.pid,vm.widgets,start,end)
+                .reorderWidget(vm.pid, vm.widgets, start, end)
                 .then(function (response) {
-                  //  vm.widgets = response.data;
-                    console.log("DAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMMMMMMMNNNNNNNNNNNNNNNNNNNNNNNNN");
-                    console.log(response.data);
+                    //  vm.widgets = response.data;
                 });
 
-           // alert(start);
+            // alert(start);
             //alert(end);
         }
-      //  scope.$on('startfunction', function (start, end) {
-       //     console.log('function run');
+        //  scope.$on('startfunction', function (start, end) {
+        //     console.log('function run');
         //});
         //$scope.$watch('jgaSortableCallback', function(end) {
-         //   alert(end);
+        //   alert(end);
         //});
 
         //Get embedded html to work

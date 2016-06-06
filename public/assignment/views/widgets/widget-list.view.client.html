@@ -16,7 +16,7 @@
 </nav>
 <h2>{{$scope.jgaSortableCallback}}</h2>
 <h2>{{model.jgaSortableCallback}}</h2>
-<div class="container" jga-sortable callback-fn="ctrlFn(start,end)">
+<div id="container" class="container" jga-sortable callback-fn="ctrlFn(start,end)">
     <div class="jga-widget"
          ng-repeat="widget in model.widgets"
          ng-switch on="widget.widgetType">
@@ -55,7 +55,7 @@
             <span class="glyphicon glyphicon-play">
             </span>
         </a>
-        <a class="navbar-brand navbar-link pull-left">
+        <a ng-click="model.toggableEdit()" class="navbar-brand navbar-link pull-left hand">
             <span class="glyphicon glyphicon-eye-open">
             </span>
         </a>

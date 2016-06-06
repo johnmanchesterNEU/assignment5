@@ -35,7 +35,7 @@ module.exports = function (app) {
             "widgetType": "IMAGE",
             "pageId": "321",
             "width": "100%",
-            "url": "http://lorempixel.com/400/200/"
+            "url": "https://sailoutwithme.files.wordpress.com/2014/09/cropped-sea-of-stars-vaadhoo-island3-copy.jpg"
         },
         {
             "_id": "456",
@@ -47,9 +47,14 @@ module.exports = function (app) {
         {"_id": "567", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
         {
             "_id": "678", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
-            "url": "https://www.youtube.com/embed/jZhQOvvV45w"
+            "url": "https://www.youtube.com/embed/V0lw3qylVfY?wmode=transparent&rel=0"
         },
-        {"_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
+        {"_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"},
+        {"_id": "8910", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
+        {
+            "_id": "678", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
+            "url": "https://www.youtube.com/embed/1dmh1cZQuXk?wmode=transparent&rel=0"
+        }
     ];
 
     app.post("/api/upload", upload.single('myFile'), uploadImage);
