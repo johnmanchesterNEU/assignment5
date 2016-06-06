@@ -48,8 +48,10 @@ module.exports = function(app) {
         var newUser = req.body;
         for(var i in users) {
             if(users[i]._id === id) {
+                users[i].password = newUser.password;
                 users[i].firstName = newUser.firstName;
                 users[i].lastName = newUser.lastName;
+                users[i].email = newUser.email;
                 res.send(200);
                 return;
             }

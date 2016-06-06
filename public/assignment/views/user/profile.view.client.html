@@ -74,6 +74,7 @@
                    type="email"
                    class="form-control"
                    id="email"
+                   ng-pattern-restrict="^([\w!#$%&'*/~|`}{^+-]+(.|@)?)*$"
                    placeholder="johnsmith@somewebsite.com"/>
         </div>
         <div class="form-group">
@@ -84,6 +85,7 @@
                    type="text"
                    class="form-control"
                    id="first-name"
+                   ng-pattern-restrict="^[a-zA-Z\-]*$"
                    placeholder="Smith"/>
         </div>
         <div class="form-group">
@@ -94,6 +96,7 @@
                    type="text"
                    class="form-control"
                    id="last-name"
+                   ng-pattern-restrict="^[a-zA-Z\-]*$"
                    placeholder="Smith"/>
         </div>
     </form>

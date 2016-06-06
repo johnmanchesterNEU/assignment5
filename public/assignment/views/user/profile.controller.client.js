@@ -20,6 +20,7 @@
         }
         init();
 
+        //deletes user from Users
         function unregister() {
             UserService
                 .deleteUser(id)
@@ -33,6 +34,7 @@
                 );
         }
 
+        //updates all fields except username
         function updateUser() {
             UserService
                 .updateUser(id, vm.user)
