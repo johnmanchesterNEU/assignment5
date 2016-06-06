@@ -98,7 +98,8 @@ module.exports = function (app) {
             if (widgets[i].pageId === pageId) widgets.splice(i, 1);
         }
 
-        res.send(200)
+        widgets.push.apply(widgets, newWidget);
+        //res.json(newWidget);
 
     }
 

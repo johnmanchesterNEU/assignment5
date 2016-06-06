@@ -26,6 +26,7 @@
                     disableSortable();
                     },
                     function (error) {
+                       // vm.widgets = response.data;
                         vm.error = error.data;
                         vm.success = true;
                     }
@@ -47,7 +48,7 @@
                 $( "#eye" ).removeClass("glyphicon-eye-close");
                 $( "#eye" ).addClass("glyphicon-eye-open");
                 enableSortable();
-            } else {  
+            } else {
                 $('.iframefix').css('display', 'none');
                 $('.iframefix').css('z-index', '0');
                 $( "#eye" ).removeClass( "glyphicon-eye-open");
@@ -69,7 +70,7 @@
             WidgetService
                 .reorderWidget(vm.pid, vm.widgets, start, end)
                 .then(function (response) {
-                      vm.widgets = response.data;
+                      //vm.widgets = response.data;
                 });
 
             // alert(start);
