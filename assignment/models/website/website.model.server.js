@@ -12,6 +12,8 @@ module.exports = function () {
         findWebsiteById: findWebsiteById
     }
 
+    return api;
+
     function createWebsiteForUser(userId, website){
         website._user = userId;
         return Website.create(website);
@@ -23,8 +25,9 @@ module.exports = function () {
     }
 
     function findWebsiteById(websiteId){
-        return Website.findOne({_id: websiteId});
+        return Website.findById({_id: websiteId});
     }
+
     function  updateWebsite(websiteId, website) {
         return Website
             .update({_id:websiteId},{

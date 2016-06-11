@@ -13,7 +13,9 @@
         };
         return api;
 
-        function createWebsite(developerId, website) {
+        function createWebsite(userId, website) {
+           // console.log(userId);
+            //console.log(website);
         //    var newWebsite = {
          //       _id: (new Date()).getTime() + "",
          //       name: website.name,
@@ -24,10 +26,10 @@
             //POST ///api/user/:userId/website  //createWebsite
 
            // console.log(newWebsite);
-            var url = "/api/user/" + developerId + "/website";
+            var url = "/api/user/" + userId + "/website";
             //return $http.post("/api/user", user);
             //app.post("/api/user/:userId/website", createWebsite);
-            return $http.post(url, newWebsite);
+            return $http.post(url, website);
             //websites.push(newWebsite);
             //return newWebsite;
         }
@@ -41,6 +43,7 @@
 
 
         function findWebsiteById(websiteId) {
+            //console.log(websiteId);
             // /api/website/:websiteId
             var url = "/api/website/" + websiteId;
             return $http.get(url);
@@ -56,6 +59,7 @@
 
 
         function deleteWebsite(websiteId) {
+            console.log(websiteId);
             var url = "/api/website/" + websiteId;
             return $http.delete(url);
         }

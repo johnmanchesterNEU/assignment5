@@ -30,7 +30,7 @@
             $location.url("/profile/"+vm.userId);
         }
 
-        function  page(pageId) {
+        function page(pageId) {
             $location.url("/page/"+pageId);
         }
     }

@@ -14,11 +14,11 @@
     <ul class="list-group borderless">
         <li ng-repeat="web in model.websites"
             class="list-group-item">
-            <a href="#/user/{{web.developerId}}/website/{{web._id}}/page/">
+            <a href="#/user/{{web._user}}/website/{{web._id}}/page/">
                 {{web.name}}
             </a>
             <span class="pull-right">
-                <a href="#/user/{{web.developerId}}/website/{{web._id}}" class="link">
+                <a href="#/user/{{web._user}}/website/{{web._id}}" class="link">
                     <span class="glyphicon glyphicon-cog"></span>
                 </a>
                 <a>

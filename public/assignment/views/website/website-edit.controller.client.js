@@ -13,13 +13,18 @@
         vm.close = close;
 
         function init() {
+           // console.log(vm.websiteId);
             WebsiteService
                 .findWebsiteById(vm.websiteId)
                 .then(function(response){
                     //console.log(response.data);
                     vm.website = response.data;
 
-                });
+                },
+                    function(error) {
+                        vm.error = error.data;
+                        vm.success = true;
+                    });
             //vm.website = WebsiteService.findWebsiteUserWebsiteId(vm.userId, vm.websiteId);
         }
         init();
@@ -29,6 +34,8 @@
         }
 
         function deleteWebsite(websiteId) {
+            //console.log(websiteId);
+            console.log(vm.websiteId);
             WebsiteService
                 .deleteWebsite(vm.websiteId)
                 .then(

@@ -10,10 +10,13 @@
         vm.close = close;
 
         function createWebsite() {
+            //console.log(vm.userId);
+            //console.log(vm.website);
             WebsiteService
                 .createWebsite(vm.userId, vm.website)
                 .then(function(response){
                     var website = response.data;
+                    console.log(website);
                     $location.url("/user/"+vm.userId+"/website")
                 },
                     function(error){
