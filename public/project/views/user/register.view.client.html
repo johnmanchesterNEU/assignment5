@@ -1,0 +1,86 @@
+<div id="bg" class="background2">
+    <header class="nav whitefrost">
+
+            <ul><li>  {{model.index}}</li>
+                <li><a class="hand" ng-click="model.setScroll('#myname',0)" > Name </a></li>
+                >
+                <li><a class="hand" ng-click="model.setScroll('#userName',1)"> User Name </a></li>
+                >
+                <li><a class="hand" ng-click="model.setScroll('#gender',2)" >Gender</a></li>
+                >
+                <li><a class="hand" ng-click="model.setScroll('#country',3)" >Country</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section id="main">
+        <article id="myname" class="panel slidedown" ng-animate="'animate'">
+            <span class="all">
+                <label class="fontwhite" for="firstName">What is your name? First, here please...*</label>
+                <input id="firstName"
+                       ng-model="firstName"
+                       type="text"
+                       name="focus"
+                       class="search-box full-pill"
+                       placeholder="First Name"
+                       ng-pattern-restrict="^[a-zA-Z0-9_\-]*$" required/>
+
+                <label class="fontwhite" for="LastName">...And your last.*</label>
+                 <input id="LastName"
+                        ng-model="lastName"
+                        type="text"
+                        name="focus"
+                        class="search-box full-pill"
+                        placeholder="Last Name"
+                        ng-pattern-restrict="^[a-zA-Z0-9_\-]*$" required/>
+                <a ng-click="model.smoothScroll('userName')">Down</a>
+       </span>
+        </article>
+        <article id="userName" class="panel slidedown" ng-animate="'animate'">
+            <span class="all">
+                <label class="fontwhite" for="user">Think of User Name. <br> <p class="indent">We'll make sure it's unique*</p></label>
+            <input id="user"
+                   ng-model="name" type="text" name="focus" class="search-box pill-left" placeholder="Enter Name"
+                   ng-pattern-restrict="^[a-zA-Z0-9_\-]*$" required/><button id="nameButton" class="submit"
+                                                                             ng-click="model.next()"
+                                                                             aria-hidden="true"></button>
+
+
+       </span>
+        </article>
+        <article class="panel slidedown" id="gender">
+            <span class="all">
+            <fieldset>
+                <legend class="fontwhite borderWhite">What Best describes You?</legend>
+                <input type="radio" name="animal" value="Male"/><i class="pink fa fa-female largeFont"></i><br/>
+                <input type="radio" name="animal" value="Female"/><i class="male fa fa-male largeFont"></i><br/>
+                <input type="radio" name="animal" value="Transgender"/><i class="fontwhite fa fa-transgender-alt largeFont"></i><br/>
+                <input type="radio" name="animal" value="Other"/><i class="fontwhite fa fa-hand-spock-o largeFont"></i><br/>
+            </fieldset>
+                </span>
+            <a ng-click="model.smoothScroll('country')">Down</a>
+        </article>
+        <article class="panel" id="country">
+            <span clas="all">
+
+                 <input id="blah"
+                        ng-model="name" type="text" name="focus" class="search-box pill-left" placeholder="Enter Name"
+                        ng-pattern-restrict="^[a-zA-Z0-9_\-]*$" required/><button id="cot" class="submit"
+                                                                                  ng-click="model.next()"
+                                                                                  aria-hidden="true"></button>
+            </span>
+        </article>
+    </section>
+
+</div>
+<nav class="navbar navbar-default navbar-fixed-bottom whitefrost">
+    <div class="container-fluid">
+        <a class="navbar-text navbar-link pull-left">
+            <span>-------------------------</span>
+        </a>
+        <button  id="up" ng-click="model.previous()" class="navbar-center pull-right hand" disabled>
+            <span class="glyphicon glyphicon-chevron-up"></span>
+        </button><button id="down" ng-click="model.next()" class="navbar-center pull-right hand">
+        <span class="glyphicon glyphicon-chevron-down"></span>
+    </button>
+    </div>
+</nav>

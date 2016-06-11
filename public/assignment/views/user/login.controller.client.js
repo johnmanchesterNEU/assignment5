@@ -15,18 +15,19 @@
             vm.error=false;
         }
 
-        function login(username, password){
+       function login(username, password) {
             UserService
-                .findUserByCredentials(username,password)
+                .findUserByCredentials(username, password)
                 .then(function(response){
+                    console.log(response);
+                    console.log(response.data);
                     var user = response.data;
-                    console.log(user);
-                    if(user._id){
+                    if(user._id) {
                         $location.url("/profile/" + user._id);
-                    }else {
+                    } else {
                         vm.error = "User not found";
                     }
-            });
+                });
         }
         
     }

@@ -1,0 +1,175 @@
+
+/*
+ *Styling
+ */
+
+html,body {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+body {
+    overflow: hidden;
+}
+
+header {
+    background: #fff;
+    position: fixed;
+    left: 0; top: 0;
+    width:100%;
+    height: 3.5rem;
+    z-index: 10;
+}
+
+nav {
+    width: 100%;
+    padding-top: 0.5rem;
+}
+
+nav ul {
+    list-style: none;
+    width: inherit;
+    margin: 0;
+}
+
+
+ul li:nth-child( 3n + 1), #main .panel:nth-child( 3n + 1) {
+    background: rgba( 0, 180, 255, 0.0);
+}
+
+ul li:nth-child( 3n + 2), #main .panel:nth-child( 3n + 2) {
+    background: rgba( 255, 65, 180, 0.0 );
+}
+
+ul li:nth-child( 3n + 3), #main .panel:nth-child( 3n + 3) {
+    background: rgba( 0, 255, 180, 0.0);
+}
+
+ul li {
+    display: inline-block;
+    margin: 0 8px;
+    margin: 0 0.5rem;
+    padding: 5px 8px;
+    padding: 0.3rem 0.5rem;
+    border-radius: 2px;
+    line-height: 1.5;
+}
+
+ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.panel {
+    width: 100%;
+    height: 100%;
+    z-index:0;
+    -webkit-transform: translateZ( 0 );
+    transform: translateZ( 0 );
+    -webkit-transition: -webkit-transform 0.6s ease-in-out;
+    transition: transform 0.6s ease-in-out;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+
+}
+
+.panel h1 {
+    font-family: sans-serif;
+    font-size: 64px;
+    font-size: 4rem;
+    color: #fff;
+    position:relative;
+    line-height: 200px;
+    top: 33%;
+    text-align: center;
+    margin: 0;
+}
+
+/*
+ *Scrolling
+ */
+
+a[ id= "servicios" ]:target ~ #main article.panel {
+    -webkit-transform: translateY( 0px);
+    transform: translateY( 0px );
+}
+
+a[ id= "galeria" ]:target ~ #main article.panel {
+    -webkit-transform: translateY( -500px );
+    transform: translateY( -500px );
+}
+a[ id= "contacto" ]:target ~ #main article.panel {
+    -webkit-transform: translateY( -1000px );
+    transform: translateY( -1000px );
+}
+
+.top{
+    -webkit-transform: translateY( 0px);
+    transform: translateY( 0px );
+}
+
+.middle{
+    -webkit-transform: translateY( -500px );
+    transform: translateY( -500px );
+}
+
+
+.bottom{
+    -webkit-transform: translateY( -1000px );
+    transform: translateY( -1000px );
+}
+
+
+.box {
+    margin: 20px auto;
+    background: #5FCF80;
+    width: 150px;
+    height: 150px;
+    -webkit-transform: translateY( -500px );
+    transform: translateY( -500px );
+}
+
+.circle {
+    -webkit-transform: rotate(360deg);
+    background: #9351A6;
+    border-radius: 50%;
+    margin: 20px auto;
+    width: 150px;
+    height: 150px;
+}
+
+.rotate {
+    -webkit-transition: all 1s ease-in-out;
+    -moz-transition: all 1s ease-in-out;
+    -o-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
+}
+
+.animate-enter,
+.animate-leave
+{
+    -webkit-transition: 400ms cubic-bezier(0.000, 0.000, 0.580, 1.000) all;
+    -moz-transition: 400ms cubic-bezier(0.000, 0.000, 0.580, 1.000) all;
+    -ms-transition: 400ms cubic-bezier(0.000, 0.000, 0.580, 1.000) all;
+    -o-transition: 400ms cubic-bezier(0.000, 0.000, 0.580, 1.000) all;
+    transition: 400ms cubic-bezier(0.000, 0.000, 0.580, 1.000) all;
+    position: relative;
+    display: block;
+}
+
+.animate-enter.animate-enter-active,
+.animate-leave {
+    opacity: 1;
+    top: 0;
+    height: 30px;
+}
+
+.animate-leave.animate-leave-active,
+.animate-enter {
+    opacity: 0;
+    top: -50px;
+    height: 0px;
+}
+.hand{
+    cursor: pointer;
+}

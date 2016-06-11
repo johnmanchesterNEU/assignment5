@@ -1,10 +1,10 @@
 module.exports = function(app) {
-    var userService = require("./services/user.services.server.js")(app);
-    var websiteService = require("./services/website.services.server")(app);
-    var websiteService = require("./services/page.services.server")(app);
-    var widgetService = require("./services/widget.services.server")(app);
-    var flickrService = require("./services/flickr.services.server")(app);
 
+    var models = require("./models/model.server")();
+
+    require("./services/user.services.server")(app, models);
+    //require("./services/website.services.server")(app, models);
+   // require("./services/widget.services.server")(app, models);
     /*
     var users = [
         {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },

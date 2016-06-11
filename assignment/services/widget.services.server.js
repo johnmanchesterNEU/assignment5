@@ -73,7 +73,12 @@ module.exports = function (app) {
         res.send(widgets);
     }
 
+
+
     function reorderWidgets(req, res) {
+        /*
+
+        */
         var initialIndex = req.query.initial;
         var finalIndex = req.query.final;
         var pageId = req.params.pageId;
@@ -125,6 +130,12 @@ module.exports = function (app) {
         }
         res.send(resultSet);
     }
+    // for each
+    //if start > end
+    // if  between start and end ++
+    // if end > start
+    //if between start --
+    
 
     function findWidgetById(req, res) {
         var id = req.params.widgetId;

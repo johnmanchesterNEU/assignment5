@@ -14,15 +14,19 @@
         };
         return api;
 
-        function createUser(newUser) {
-            var user = {
+        function createUser(user) {
+            delete user.verify;
+            //newUser.verify = null;
+         /*   var user = {
                 username: newUser.username,
                 firstName: newUser.firstName,
                 lastName: newUser.lastName,
                 password: newUser.password,
                 email: newUser.email,
-                dateOfBirth: dateOfBirth
-            };
+                dateOfBirth: newUser.dateOfBirth
+            };*/
+            //alert("HERE");
+           // console.log(newUser)
             return $http.post("/api/user", user);
         }
 
