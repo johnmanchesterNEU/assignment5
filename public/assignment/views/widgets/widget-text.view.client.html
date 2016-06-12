@@ -1,48 +1,34 @@
 <form>
     <div class="form-group">
-        <label for="widget-name">Name</label>
-        <input ng-model="model.widget.name"
-               type="text"
-               class="form-control"
-               id="widget-name"
-               placeholder="Name">
-    </div>
-    <div class="form-group">
         <label for="widget-text">Text</label>
         <input ng-model="model.widget.text"
                type="text"
                class="form-control"
                id="widget-text"
-               placeholder="text">
+               placeholder="Name"/>
+    </div>
     </div>
     <div class="form-group">
         <label for="widget-rows">Rows</label>
         <input ng-model="model.widget.rows"
-               type="text"
+               type="number"
                class="form-control"
                id="widget-rows"
-               placeholder="Name">
+               min="1"
+               value="1"/>
     </div>
     <div class="form-group">
-        <label for="widget-placeholder">Rows</label>
+        <label for="widget-placeholder">Placeholder</label>
         <input ng-model="model.widget.placeholder"
                type="text"
                class="form-control"
                id="widget-placeholder"
-               placeholder="Name">
+               placeholder="Placeholder"/>
     </div>
-    <div class="input-group form-group">
+    <div class="form-group">
+    <label for="widget-formatted">Formatted</label>
         <input ng-model="model.widget.formatted"
-               type="text"
-               class="form-control"
-               id="widget-formatted"
-               placeholder="Formatted"
-               value="Formatted">
-        <span class="input-group-btn">
-        <button type="button" class="btn btn-default" aria-label="Indent">
-            <span class="glyphicon glyphicon-unchecked"></span>
-        </button>
-        </span>
-    </div>
-
+               type="checkbox"
+               id="widget-formatted"/>
+     </div>
 </form>

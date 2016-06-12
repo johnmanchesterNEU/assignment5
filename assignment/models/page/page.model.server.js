@@ -1,11 +1,8 @@
-/**
- * Created by John on 6/7/2016.
- */
 module.exports = function () {
 
     var mongoose = require("mongoose");
-    var PageSchema = require('./page.schema.server');
-    var Page = mongoose.model("Page", PageSchema, 'page');
+    var PageSchema = require("./page.model.schema.js")();
+    var Page = mongoose.model("Page", PageSchema);
 
     var api = {
         createPage : createPage,
@@ -14,9 +11,10 @@ module.exports = function () {
         updatePage: updatePage,
         deletePage: deletePage,
     }
+    return api;
 
 
-    function  createPage(websiteId, page) {
+    function  createPage(websiteId, page){
         page._website = websiteId;
         return Page.create(page);
     }
@@ -33,12 +31,7 @@ module.exports = function () {
     function updatePage(pageId, page){
         return Page
             .update({_id:pageId},{
-                // $set: user
-                $set:{
-                    name : page.name,
-                    title: page.title,
-                    description: page.description
-                }
+                 $set: page
             });
     }
 

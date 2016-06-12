@@ -23,7 +23,7 @@
                         //$('.iframefix').css("color: white");
                         /// /$("iframe").blur();
                         start = $(ui.item).index();
-                        console.log(start);
+                        //console.log(start);
                        // $("iframe").contentWindow.focus();
                     },
                     stop: function(event, ui) {

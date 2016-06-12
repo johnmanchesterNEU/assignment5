@@ -4,7 +4,8 @@ module.exports = function(app) {
 
     require("./services/user.services.server")(app, models);
     require("./services/website.services.server")(app, models);
-   // require("./services/widget.services.server")(app, models);
+    require("./services/page.services.server")(app,models);
+    require("./services/widget.services.server")(app, models);
     /*
     var users = [
         {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },

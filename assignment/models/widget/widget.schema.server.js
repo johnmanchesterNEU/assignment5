@@ -1,14 +1,13 @@
-var mongoose = require("mongoose");
-model.exports = function(){
-    var Widget = mongoose.model("Widget", WidgetSchema);
+module.exports = function(){
+   // var Widget = mongoose.model("Widget", WidgetSchema);
 
-    var WidgetSchema = mongoose.schema({
-        _page:{type: mongoose.Schema.objectId, ref:"Page"},
-        name: String,
-        description: String,
+    var mongoose = require("mongoose");
+
+    var WidgetSchema = mongoose.Schema({
+        _page: {type: mongoose.Schema.ObjectId, ref: "Page"},
         type: {
             type: String,
-            enum: ['HEADING', 'IMAGE', 'YOUTUBE', 'HTML', 'INPUT']
+            enum: ['HEADING', 'IMAGE', 'YOUTUBE', 'HTML', 'INPUT','TEXT']
         },
         name: String,
         text: String,
@@ -23,6 +22,7 @@ model.exports = function(){
         icon: String,
         deletable: Boolean,
         formatted: Boolean,
+        index: Number,
         dateCreated: {type: Date, default:Date.now()}
     }, {collection: "assignment.widget"});
 

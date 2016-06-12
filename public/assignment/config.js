@@ -81,12 +81,6 @@
                 title: "Widget Chooser",
                 controllerAs: "model"
             })
-            .when("/user/:uid/website/:wid/page/:pid/widget/new/", {
-                templateUrl: "views/widgets/widget-chooser.view.client.html",
-                controller: "WidgetNewController",
-                title: "Widget Chooser",
-                controllerAs: "model"
-            })
             .when("/user/:uid/website/:wid/page/:pid/widget", {
                 templateUrl: "views/widgets/widget-list.view.client.html",
                 controller: "WidgetListController",

@@ -21,8 +21,8 @@
         <label for="widget-size">Size</label>
         <select ng-model="model.widget.size"
                 class="form-control"
-                id="widget-size">
-            <option value="1" selected>1</option>
+                id="widget-size" ng-switch-on="widget.size">
+            <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="3">4</option>
@@ -31,5 +31,4 @@
             <option value="7">7</option>
         </select>
     </div>
-
 </form>

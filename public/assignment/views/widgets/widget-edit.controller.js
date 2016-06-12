@@ -15,11 +15,17 @@
         vm.close = close;
 
         function init() {
+            console.log(vm.wgid);
             WidgetService
                 .findWidgetById(vm.wgid)
                 .then(function(response){
                     vm.widget  = response.data;
-                });
+                    console.log(vm.widget);
+                },
+                    function(error) {
+                        vm.error = error.data;
+                        vm.success = true;
+                    });
         }
 
         init();

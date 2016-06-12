@@ -12,7 +12,8 @@
         vm.close = close;
 
         function createPage() {
-            console.log(vm.wid);
+           // console.log(vm.wid);
+            //console.log(vm.page);
             PageService
                 .createPage(vm.wid, vm.page)
                 .then(

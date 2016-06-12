@@ -10,24 +10,33 @@
             findWidgetById: findWidgetById,
             updateWidget: updateWidget,
             deleteWidget: deleteWidget,
-            reorderWidget: reorderWidget
+            reorderWidget: reorderWidget,
+            countMe: countMe,
         };
         return api;
 
+        //returns a count for all the widgets for a page ID
+        function countMe(pageId){
+            var url = "/widgetCount/" + pageId;
+            return $http.get(url);
+        }
+
         //reorders widget on server
-        function reorderWidget(pageId, widget, initial, final) {
-            var url = "/page/" + pageId + "/widget?initial=" + initial + "&final=" + final;
-            return $http.put(url, widget);
+        function reorderWidget(pageId, start, end) {
+            var url = "/page/" + pageId + "/widget?initial=" + start + "&final=" + end;
+            return $http.put(url);
         }
 
         function createWidget(pageId, widget) {
-            alert(widget.url);
-            //console.log(widget);
+            //alert(widget.url);
+            console.log(pageId);
+            console.log(widget);
             var url = "/api/page/" + pageId + "/widget";
             return $http.post(url, widget);
         }
 
         function findAllWidgetsForPage(pageId) {
+            console.log(pageId)
             var url = "/api/page/" + pageId + "/widget";
             return $http.get(url);
         }

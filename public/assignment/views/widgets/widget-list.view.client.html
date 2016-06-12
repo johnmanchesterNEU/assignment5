@@ -14,12 +14,10 @@
         </a>
     </div>
 </nav>
-<h2>{{$scope.jgaSortableCallback}}</h2>
-<h2>{{model.jgaSortableCallback}}</h2>
 <div id="container" class="container" jga-sortable callback-fn="ctrlFn(start,end)">
     <div class="jga-widget"
          ng-repeat="widget in model.widgets"
-         ng-switch on="widget.widgetType">
+         ng-switch on="widget.type">
 
         <div id="tool" name="tool" class="jga-widget-tool up-vid">
             <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}"><span
@@ -29,7 +27,7 @@
 
         <!-- Bind each widget type to its own html here and view it on widgetType switch-->
 
-        <div ng-switch-when="HEADER">
+        <div ng-switch-when="HEADING">
             <div ng-include src="'views/widgets/header.view.client.html'"></div>
         </div>
 
@@ -45,6 +43,11 @@
         <!-- Bind to the HTML to the div tag-->
         <div ng-switch-when="HTML">
             <div ng-include src="'views/widgets/html.view.client.html'"></div>
+        </div>
+
+        <!-- Bind to the HTML to the div tag-->
+        <div ng-switch-when="TEXT">
+            <div ng-include src="'views/widgets/text.view.client.html'"></div>
         </div>
     </div>
 </div>

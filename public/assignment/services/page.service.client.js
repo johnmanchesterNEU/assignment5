@@ -34,8 +34,11 @@
 
         function createPage(websiteId, page) {
             page.websiteId = websiteId;
-            console.log("sss " + websiteId);
-            console.log(page);
+
+           // console.log(websiteId);
+            //console.log(page);
+           // console.log("sss " + websiteId);
+           // console.log(page);
             var url = "/api/website/"+websiteId+"/page";
             return $http.post(url, page);
            // pages.push(newPage);

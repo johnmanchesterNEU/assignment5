@@ -18,11 +18,14 @@
         vm.disableSortable = disableSortable;
 
         function init() {
+            console.log(vm.pid);
             //disableSortable();
             WidgetService
                 .findAllWidgetsForPage(vm.pid)
                 .then(function (response) {
+                        //console.log("HEY " + vm.widgets);
                     vm.widgets = response.data;
+                    ///console.log(vm.widgets[0]);
                     disableSortable();
                     },
                     function (error) {
@@ -67,10 +70,14 @@
 
         //scope.fun.start(start,end);
         $scope.ctrlFn = function (start, end) {
+            //console.log(start);
+            //console.log(end);
             WidgetService
-                .reorderWidget(vm.pid, vm.widgets, start, end)
+                .reorderWidget(vm.pid, start, end)
                 .then(function (response) {
                       //vm.widgets = response.data;
+                    vm.widgets = response.data;
+                    //console.log(vm.widgets);
                 });
 
             // alert(start);
