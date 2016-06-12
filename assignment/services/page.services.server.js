@@ -31,6 +31,7 @@ module.exports = function (app,models) {
                     res.json(page);
                 },
                 function (error) {
+                    //console.log(error.data);
                     res.statusCode(400).send(error);
                 }
             );

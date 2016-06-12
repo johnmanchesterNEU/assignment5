@@ -13,13 +13,19 @@
         vm.createWidget = createWidget;
         vm.close = close;
         vm.init = init;
-        vm.index = null;
+        //vm.index = null;
+        vm.submitted = false;
 
         function init(){
             WidgetService
                 .countMe(vm.pid)
                 .then(function(response){
-                    vm.index = response.data;
+                    console.log(response.data);
+                    vm.index  = response.data;
+                    console.log(vm.index);
+                   // vm.widget.type = vm.type;
+                   // vm.widget.index = vm.index;
+
                        // console.log(vm.index);
                     //console.log("HWWW " + vm.widget.index);
                         //$location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget");
@@ -31,12 +37,19 @@
         }
         init();
 
-        function createWidget(){
-            vm.widget.type = vm.type;
-            vm.widget.index = vm.index;
-            console.log(vm.widget.type);
-            console.log(vm.widget);
+        function createWidget(isValid){
+         //   console.log(vm.widget.name);
+           // vm.widget.type = vm.type;
+           // vm.widget.index = vm.index;
+            //console.log(vm.widget.type);
+            vm.submitted = true;
+            console.log(isValid);
+            //console.log(vm.widget.type);
+            //console.log(vm.widget);
 
+            if(isValid){
+                vm.widget.type = vm.type;
+                vm.widget.index = vm.index;
             WidgetService
                 .createWidget(vm.pid, vm.widget)
                 .then(function(response){
@@ -47,7 +60,7 @@
                     function(error){
                         vm.error = error.data;
                     }
-                )
+                )}
         }
 
         function close() {

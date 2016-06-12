@@ -43,16 +43,26 @@ module.exports = function(app, models) {
     // sends a request to create a user at the database
     function createUser(req, res) {
         var user = req.body;
-        console.log("here: " + user);
+       // console.log("here: " + user);
         userModel
             .createUser(user)
             .then(
                 function(user) {
                     console.log("hit server");
+                    //user.verify = user.password;
                     res.json(user);
+                    //res.statusCode(200);
                 },
                 function(error) {
-                    res.statusCode(400).send(error);
+                    //console.log("EEE " + error)
+                    if(error.code == 11000){
+                       // console.log("OOOOO");
+                        //res
+                        res.status(500).send("User name already exists")
+                    }else {
+                        //res.statusCode(200);
+                        res.status(400).send("An error has occurred");
+                    }
                 }
             );
 

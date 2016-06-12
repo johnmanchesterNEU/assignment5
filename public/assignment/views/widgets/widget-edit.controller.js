@@ -13,16 +13,18 @@
         vm.deleteWidget = deleteWidget;
         vm.updateWidget = updateWidget;
         vm.close = close;
+        vm.submitted= false;
 
         function init() {
             console.log(vm.wgid);
             WidgetService
                 .findWidgetById(vm.wgid)
-                .then(function(response){
-                    vm.widget  = response.data;
-                    console.log(vm.widget);
-                },
-                    function(error) {
+                .then(function (response) {
+                        vm.widget = response.data;
+                        console.log(vm.widget);
+                    console.log(vm.submitted);
+                    },
+                    function (error) {
                         vm.error = error.data;
                         vm.success = true;
                     });
@@ -38,30 +40,35 @@
             WidgetService
                 .deleteWidget(vm.wgid)
                 .then(
-                    function(response) {
-                        $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget");
+                    function (response) {
+                        $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget");
                     },
-                    function(error) {
+                    function (error) {
                         vm.error = error.data;
                         vm.success = true;
                     }
                 )
         }
 
-        function updateWidget() {
-            WidgetService
-                .updateWidget(vm.wgid, vm.widget)
-                .then(
-                    function(response) {
-                        $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget");
-                    },
-                    function(error) {
-                        vm.error = error.data;
-                        vm.success = true;
-                    }
-                )
-            
+        function updateWidget(isValid) {
+            vm.submitted = true;
+            //console.log(widgetForm.widgetname.$error);
+            //console.log(vm.submitted);
+            if (isValid) {
+                WidgetService
+                    .updateWidget(vm.wgid, vm.widget)
+                    .then(
+                        function (response) {
+                            $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget");
+                        },
+                        function (error) {
+                            vm.error = error.data;
+                            vm.success = true;
+                        }
+                    )
+            }
+
         }
-        
+
     }
 })();

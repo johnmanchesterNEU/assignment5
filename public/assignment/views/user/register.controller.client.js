@@ -9,10 +9,19 @@
 
         vm.register = register;
         vm.submitForm = submitForm;
+        vm.submitted = false;
+        vm.close =  close;
+
+
+        function close(){
+            vm.success = false;
+        }
+
 
 
         function submitForm(isValid) {
-            if (isValid) {
+            vm.submitted = true;
+            if (isValid && (vm.user.password === vm.user.verify)) {
                 register();
             }
 
@@ -20,15 +29,20 @@
 
 
         function register () {
+            console.log(vm.user);
             UserService
                 .createUser(vm.user)
                 .then(
                     function(response){
-                        var user = response.data;
-                        $location.url("/profile/"+user._id);
-                    },
-                    function(error){
+                       var result = response.data;
+                      //  console.log("RES " + result);
+                        if(result._id){
+                        $location.url("/profile/"+result._id);
+                    }},
+                    function (error) {
+                        console.log(error.data)
                         vm.error = error.data;
+                        vm.success = true;
                     }
                 );
         }

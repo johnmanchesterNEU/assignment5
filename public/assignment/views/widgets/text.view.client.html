@@ -1,3 +1,5 @@
+<div>
+    <div name="dragger" class="iframefix"></div>
 <div ng-if="widget.formatted" text-angular ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
         ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
         ['indent','outdent'],['html']]"></div>
@@ -6,3 +8,4 @@
 <textarea ng-if="!widget.formatted && (widget.rows > 1)"
           rows="{{widget.rows}}" placeholder="{{widget.placeholder}}"
           class="form-control">{{widget.text}}</textarea>
+    </div>

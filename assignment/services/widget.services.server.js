@@ -11,7 +11,7 @@ module.exports = function (app, models) {
     var widgetModel = models.widgetModel;
 
 
-    var widgets = [
+   /* var widgets = [
         {
             "_id": "012",
             "widgetType": "HEADER",
@@ -58,7 +58,7 @@ module.exports = function (app, models) {
             "_id": "678", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
             "url": "https://www.youtube.com/embed/1dmh1cZQuXk?wmode=transparent&rel=0"
         }
-    ];
+    ];*/
 
     app.post("/api/upload", upload.single('myFile'), uploadImage);
 
@@ -83,6 +83,7 @@ module.exports = function (app, models) {
         var start = req.query.initial;
         var end = req.query.final;
         var pageId = req.params.pageId;
+       // var widgets = res.body;
 
         console.log("start: " + start+ " end: "+ end + " pageId: " + pageId);
 

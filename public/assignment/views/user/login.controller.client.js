@@ -9,26 +9,28 @@
 
         vm.login = login;
         vm.close = close;
-
+        vm.submitted = false;
 
         function close(){
             vm.error=false;
         }
 
-       function login(username, password) {
+       function login(isValid) {
+           vm.submitted = true;
+           console.log("dd " + vm.user.username);
+           console.log("ee " +vm.user.password);
+           if(isValid){
             UserService
-                .findUserByCredentials(username, password)
+                .findUserByCredentials(vm.user.username, vm.user.password)
                 .then(function(response){
-                    console.log(response);
-                    console.log(response.data);
                     var user = response.data;
-                    if(user._id) {
+                    if(user) {
                         $location.url("/profile/" + user._id);
                     } else {
                         vm.error = "User not found";
                     }
                 });
-        }
+        }}
         
     }
 })();

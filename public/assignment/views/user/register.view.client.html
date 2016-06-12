@@ -24,6 +24,11 @@
                    ng-pattern-restrict="^[a-zA-Z0-9_\-]*$"
                    pattern="^[a-zA-Z0-9_\-]*$"
                    required/>
+            <div ng-messages="userForm.username.$error"
+                 style="color:maroon"
+                 role="alert"
+                 ng-show="model.submitted && userForm.username.$error.required">
+                <div ng-message="required">You did not enter a field</div></div>
         </div>
         <div class="form-group">
             <input ng-model="model.user.password"
@@ -33,6 +38,11 @@
                    placeholder="password"
                    id="password"
                    required/>
+            <div ng-messages="userForm.username.$error"
+                 style="color:maroon"
+                 role="alert"
+                 ng-show="model.submitted && userForm.password.$error.required">
+                <div ng-message="required">You did not enter a field</div></div>
         </div>
         <div class="form-group">
             <input ng-model="model.user.verify"
@@ -42,6 +52,16 @@
                    placeholder="verify password"
                    id="verify"
                    required/>
+            <div ng-messages="userForm.username.$error"
+                 style="color:maroon"
+                 role="alert"
+                 ng-show="model.submitted && userForm.verify.$error.required">
+                <div ng-message="required">You did not enter a field</div></div>
+            <div ng-messages="userForm.username.$error"
+                 style="color:maroon"
+                 role="alert"
+                 ng-show="model.submitted && (model.user.password != model.user.verify)">
+                <div ng-message="required">Passwords do not match</div></div>
         </div>
 
         <div class="form-group">
@@ -51,8 +71,7 @@
                    class="form-control"
                    placeholder="John"
                    id="firstName"
-                   ng-pattern-restrict="^[a-zA-Z\-]*$"
-                   required/>
+                   ng-pattern-restrict="^[a-zA-Z\-]*$"/>
         </div>
 
         <div class="form-group">
@@ -63,8 +82,7 @@
                    placeholder="Smith"
                    id="lastName"
                    ng-trim="false"
-                   ng-pattern-restrict="^[a-zA-Z\-]*$"
-                   required/>
+                   ng-pattern-restrict="^[a-zA-Z\-]*$"/>
         </div>
 
         <div class="form-group">
@@ -74,8 +92,7 @@
                    class="form-control"
                    placeholder="1/1/1980"
                    id="dateOfBirth"
-                   min="01-01-1900"
-                   required/>
+                   min="01-01-1900"/>
         </div>
 
         <div class="form-group">
@@ -85,13 +102,11 @@
                    class="form-control"
                    placeholder="someemail@email.com"
                    id="email"
-                   ng-pattern-restrict="^([\w!#$%&'*/~|`}{^+-]+(.|@)?)*$"
-                   required/>
+                   ng-pattern-restrict="^([\w!#$%&'*/~|`}{^+-]+(.|@)?)*$"/>
         </div>
 <!--^([\w!#$%&'*/~|`}{^+-]+(.|@)?)*$"-->
 
         <button ng-submit="submitForm(userForm.$valid)"
-                ng-disabled="userForm.$invalid"
                 class="btn btn-primary btn-block"
                 type="submit">
             Register

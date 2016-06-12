@@ -8,6 +8,7 @@
 
         vm.updateUser = updateUser;
         vm.unregister = unregister;
+        vm.submitted = false;
 
         var id = $routeParams["id"];
         var index = -1;

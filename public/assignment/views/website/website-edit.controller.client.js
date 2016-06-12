@@ -1,4 +1,4 @@
-(function(){
+(function () {
     angular
         .module("WebAppMaker")
         .controller("EditWebsiteController", EditWebsiteController);
@@ -11,38 +11,42 @@
         vm.updateWebsite = updateWebsite;
         vm.init = init;
         vm.close = close;
+        vm.submitted = false;
 
         function init() {
-           // console.log(vm.websiteId);
+            // console.log(vm.websiteId);
             WebsiteService
                 .findWebsiteById(vm.websiteId)
-                .then(function(response){
-                    //console.log(response.data);
-                    vm.website = response.data;
+                .then(function (response) {
+                        //console.log(response.data);
+                        vm.website = response.data;
 
-                },
-                    function(error) {
+                    },
+                    function (error) {
                         vm.error = error.data;
                         vm.success = true;
                     });
             //vm.website = WebsiteService.findWebsiteUserWebsiteId(vm.userId, vm.websiteId);
         }
+
         init();
 
-        function close(){
+        function close() {
             vm.success = false;
         }
 
-        function deleteWebsite(websiteId) {
+        function deleteWebsite() {
+            //nsole.log(isValid);
             //console.log(websiteId);
-            console.log(vm.websiteId);
+            //console.log(vm.websiteId);
+
             WebsiteService
                 .deleteWebsite(vm.websiteId)
                 .then(
-                    function(response) {
-                        $location.url("/user/"+vm.userId+"/website");
+                    function (response) {
+                        $location.url("/user/" + vm.userId + "/website");
                     },
-                    function(error) {
+                    function (error) {
                         vm.error = error.data;
                         vm.success = true;
                     }
@@ -50,18 +54,22 @@
         }
 
 
-        function updateWebsite() {
-            WebsiteService
-                .updateWebsite(vm.websiteId, vm.website)
-                .then(
-                    function(response) {
-                        $location.url("/user/"+vm.userId+"/website");
-                    },
-                    function(error) {
-                        vm.error = error.data;
-                        vm.success = true;
-                    }
-                )
+        function updateWebsite(isValid) {
+            vm.submitted = true;
+            console.log(isValid);
+            if (isValid) {
+                WebsiteService
+                    .updateWebsite(vm.websiteId, vm.website)
+                    .then(
+                        function (response) {
+                            $location.url("/user/" + vm.userId + "/website");
+                        },
+                        function (error) {
+                            vm.error = error.data;
+                            vm.success = true;
+                        }
+                    )
+            }
         }
     }
 })();

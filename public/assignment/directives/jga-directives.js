@@ -23,12 +23,15 @@
                         //$('.iframefix').css("color: white");
                         /// /$("iframe").blur();
                         start = $(ui.item).index();
+
+                       // $(element).data('preventBehaviour', true);
                         //console.log(start);
                        // $("iframe").contentWindow.focus();
                     },
                     stop: function(event, ui) {
                       //  $("iframe").css("pointer-events", "");
                         var end = $(ui.item).index();//ui.item.index();
+                       // $(element).data('preventBehaviour', false);
                         scope.someCtrlFn({start: start, end: end});
                     }
                 });

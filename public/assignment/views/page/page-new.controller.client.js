@@ -10,10 +10,15 @@
         vm.pid = $routeParams.pid;
         vm.createPage = createPage;
         vm.close = close;
+        vm.submitted = false;
 
-        function createPage() {
+        function createPage(isValid) {
            // console.log(vm.wid);
             //console.log(vm.page);
+            console.log(isValid);
+            vm.submitted = true;
+            console.log(vm.submitted);
+            if(isValid){
             PageService
                 .createPage(vm.wid, vm.page)
                 .then(
@@ -26,7 +31,7 @@
                         vm.error = error.data;
                         vm.success = true;
                     }
-                )
+                )}
 
 
             /*

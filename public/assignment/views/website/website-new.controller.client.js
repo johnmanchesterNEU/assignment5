@@ -8,10 +8,12 @@
         vm.userId = $routeParams.userId;
         vm.createWebsite = createWebsite;
         vm.close = close;
+        vm.submitted = false;
 
-        function createWebsite() {
-            //console.log(vm.userId);
-            //console.log(vm.website);
+        function createWebsite(isValid) {
+            vm.submitted = true;
+            console.log(isValid);
+            if(isValid){
             WebsiteService
                 .createWebsite(vm.userId, vm.website)
                 .then(function(response){
@@ -23,6 +25,7 @@
                         vm.error = error.data;
                     }
                 )
+            }
         }
 
         function close(){

@@ -25,7 +25,7 @@
                 .then(function (response) {
                         //console.log("HEY " + vm.widgets);
                     vm.widgets = response.data;
-                    ///console.log(vm.widgets[0]);
+                    console.log(vm.widgets);
                     disableSortable();
                     },
                     function (error) {
@@ -47,7 +47,7 @@
                 // alert(edit);
                 //alert($('.iframefix').attr('name'));
                 $('.iframefix').css('display', 'block');
-                $('.iframefix').css('z-index', '50');
+                $('.iframefix').css('z-index', '100');
                 $( "#eye" ).removeClass("glyphicon-eye-close");
                 $( "#eye" ).addClass("glyphicon-eye-open");
                 enableSortable();
@@ -56,6 +56,7 @@
                 $('.iframefix').css('z-index', '0');
                 $( "#eye" ).removeClass( "glyphicon-eye-open");
                 $( "#eye" ).addClass( "glyphicon-eye-close");
+                $('input[type=text], textarea').data('preventBehaviour', false);
                 disableSortable();
             }
         }
@@ -72,6 +73,10 @@
         $scope.ctrlFn = function (start, end) {
             //console.log(start);
             //console.log(end);
+
+
+           // .reorderWidget(vm.pid, start, end,widgets)
+            //console.log(vm.widgets);
             WidgetService
                 .reorderWidget(vm.pid, start, end)
                 .then(function (response) {

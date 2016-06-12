@@ -15,7 +15,7 @@
         return api;
 
         function createUser(user) {
-            delete user.verify;
+          //  delete user.verify;
             //newUser.verify = null;
          /*   var user = {
                 username: newUser.username,

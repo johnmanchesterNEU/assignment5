@@ -23,9 +23,15 @@
 
         //reorders widget on server
         function reorderWidget(pageId, start, end) {
+        //function reorderWidget(pageId, start, end, widgets) {
             var url = "/page/" + pageId + "/widget?initial=" + start + "&final=" + end;
+            //return $http.put(url, widgets);
             return $http.put(url);
         }
+        /*function reorderWidget(pageId, start, end) {
+            var url = "/page/" + pageId + "/widget?initial=" + start + "&final=" + end;
+            return $http.put(url);
+        }*/
 
         function createWidget(pageId, widget) {
             //alert(widget.url);

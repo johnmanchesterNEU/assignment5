@@ -12,6 +12,7 @@
         vm.updatePage = updatePage;
         vm.deletePage = deletePage;
         vm.close = close;
+        vm.submitted = false;
 
         function init() {
             PageService
@@ -42,7 +43,9 @@
 
         }
 
-        function updatePage() {
+        function updatePage(isValid) {
+            vm.submitted = true;
+            if(isValid){
             PageService
                 .updatePage(vm.pid, vm.page)
                 .then(
@@ -53,7 +56,7 @@
                     function (error) {
                         vm.error = error.data;
                     }
-                )
+                )}
         }
     }
 })();
