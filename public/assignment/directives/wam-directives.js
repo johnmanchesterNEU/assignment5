@@ -1,9 +1,9 @@
 (function(){
     angular
-        .module("jgaSortable", [])
-        .directive("jgaSortable", jgaSortable);
+        .module("wamDirectives", [])
+        .directive("wamDirectives", wamDirectives);
 
-    function jgaSortable() {
+    function wamDirectives() {
         function link(scope, element, attrs) {
             var start = null;
             var current = null;

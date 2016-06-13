@@ -88,16 +88,16 @@ module.exports = function (app, models) {
         console.log("start: " + start+ " end: "+ end + " pageId: " + pageId);
 
         widgetModel
-            .reorderWidget(pageId, start, end)
-            .then(
-                function(widget) {
-                    console.log("DD " + widget);
-                    res.json(widget);
-                },
-                function (error) {
-                    res.statusCode(400).send(error);
-                }
-            );
+            .reorderWidget(pageId, start, end);
+          //  .then(
+                //function(widget) {
+                 //   console.log("DD " + widget);
+                 //   res.json(widget);
+                //},
+                //function (error) {
+                 //   res.statusCode(400).send(error);
+               // }
+           // );
         // console.log(pageId);
         // var pageId = req.query.pageId;
         //var widget = req.body;

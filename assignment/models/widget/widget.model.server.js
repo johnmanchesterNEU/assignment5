@@ -23,145 +23,91 @@ module.exports = function () {
     }
 
 
-    /* function bulkReorder(pageId, start, end, step) {
-     return Widget.collection.bulkWrite(
-     [{
-     updateMany: {
-     "filter": {"_page": pageId, $gt: start, $lte: end},
-     "update": {$inc: {"index": step}}
-     }
-     },
-     {
-     updateOne: {
-     "filter": {"_page": pageId, "index": start},
-     "update": {$set: {"index": end}}
-     }
-     },
-     {ordered : true}]
-     );
-     }*/
+
+
+    // Bulk sequential updat operation that works in mongo shell
+    // but I could not get to work here.
+    function shiftUp(pageId, start, end) {
+        var ObjectId = require('mongodb').ObjectID;
+       console.log( mongoose.assignment.widget.bulkWrite(
+            [{
+                updateMany: {
+                    "filter": {
+                        _page: ObjectId(pageId),
+                        index: {$gte: start, $lt: end}
+                    },
+                    "update": {$inc: {"index": 1}}
+                }
+            },
+                {
+                    updateOne: {
+                        "filter": {_page: ObjectId(pageId), index: start},
+                        "update": {$set: {"index": end}}
+                    }
+                },
+                {ordered: true}
+            ]));
+    }
+
+
+    // Bulk sequential updat operation that works in mongo shell
+    // but I could not get to work here.
+    function shiftDown(pageId, start, end) {
+        var ObjectId = require('mongodb').ObjectID;
+        Widget.collection.bulkWrite(
+            [{
+                updateMany: {
+                    "filter": {
+                        _page: ObjectId(pageId),
+                        index: {$gt: start, $lte: end}
+                    },
+                    "update": {$inc: {"index": -1}}
+                }
+            },
+                {
+                    updateOne: {
+                        "filter": {
+                            _page: ObjectId(pageId), index: start},
+                        "update": {$set: {"index": end}}
+                    }
+                },
+                {ordered: true}
+            ]);
+    }
 
 
     function reorderWidget(pageId, start, end) {
+        var ObjectId = require('mongodb').ObjectID;
         if (start < end) {
-             bulkReorder(pageId, start, end, 1)
-                .then(function(resolve, reject){
-                    if(reolver){swapStart(pageId, start, end)}
-                })
-                .then(function(resolve, reject){
-                    if(reolver){return findAllWidgetsForPage(pageId)}
+            Widget.update({"_page": ObjectId(pageId), "index": {$gt: start, $lte: end}}, {$inc: {"index":  -1}},{multi:true},
+                function(err, records){
+                    console.log(records);
                 });
+
+           Widget.update({"_page": ObjectId(pageId), "index":start}, {$set: {index: end}},
+               function(err, records){
+               console.log(records);
+           });
+
+            // shiftDown(pageId, start, end);
+
         }
         if (start > end) {
-            bulkReorder(pageId, end, start, -1)
-                .then(function(resolve, reject){
-                    if(reolver){swapStart(pageId, start, end)}
-                })
-                .then(function(resolve, reject){
-                    if(reolver){return findAllWidgetsForPage(pageId)}
-                });}else{
-            return findAllWidgetsForPage(pageId)
+            Widget.update({"_page": ObjectId(pageId), "index": {$gte: end, $lt: start}}, {$inc: {"index":  1}},{multi:true},
+                function(err, records){
+                    console.log(records);
+                });
+
+           Widget.update({"_page": ObjectId(pageId), "index":start}, {$set: {index: end}},
+               function(err, records){
+                   console.log(records);
+               });
+        } else {
+           return findAllWidgetsForPage(pageId);
         }
     }
 
-    function bulkReorder(pageId, start, end) {
-        Widget.update({"_page": pageId, "index": {$gt: start, $lte: end}}, {$inc: {"index": 1}}, {multi: true});
-    }
 
-    function swapStart(pageId, start, end) {
-        Widget.update({"_page": pageId, "index": start}, {$set: {index: end}});
-    }
-
-    /*    function reorderWidget(pageId, start, end) {
-     if (start < end) {
-     return bulkReorder(pageId, start, end, 1);
-     }
-     if (start > end) {
-     return bulkReorder(pageId, end, start, -1);
-     }else{
-     return findAllWidgetsForPage(pageId);
-     }*/
-    /*  if (start != end) {
-     var temp = widget[initialIndex];
-     widget.splice(initialIndex, 1);
-     widget.splice(finalIndex, 0, temp);
-     }*/
-
-
-    //var bulk = Widget.initializeUnorderedBulkOp();
-    // return findAllWidgetsForPage(pageId);}
-
-    /* if(start < end){
-     try {
-     Widget.collection.bulkWrite(
-     [{
-     updateMany: {
-     "filter": {"_page": pageId, $gt: start, $lte: end},
-     "update": {"_page": pageId, $inc: {"index": 1}}
-     }
-     },
-     {
-     updateOne: {
-     "filter": {"index": start},
-     "update": {$set: {"index": end}}
-     }
-     }]
-     )}
-     catch (e) {
-     console.log(e);
-     }finally{
-     return findAllWidgetsForPage(pageId);
-     }}
-     else if(start > end){
-     try {
-     Widget.collection.bulkWrite(
-     [{
-     updateMany: {
-     "filter": {"_page": pageId, $gt: end, $lte: start},
-     "update": {$inc: {"index": -1}}
-     }
-     },
-     {
-     updateOne: {
-     "filter": {"_page": pageId, "index": start},
-     "update": {$set: {"index": end}}
-     }
-     }]
-     )}catch (e) {
-     console.log(e);
-     }finally {
-     return findAllWidgetsForPage(pageId);
-     }}
-     else{
-     return findAllWidgetsForPage(pageId);}
-     */
-    /*
-     /*   if (start != end) {
-     var temp = newWidget[initialIndex];
-     newWidget.splice(initialIndex, 1);
-     newWidget.splice(finalIndex, 0, temp);
-     }
-
-     console.log(start);
-     //function reorderWidget(pageId, start, end) {
-     if (start < end) {
-     Widget.update({"_page": pageId, "index": {$gt: start, $lte: end}}, {$inc: {"index":  1}},{multi:true},
-     function(err, sucess){
-     if(success){
-     Widget.update({"_page": pageId, "index":start}, {$set: {index: end}},function(err, success){if(success){return findAllWidgetsForPage(pageId)}});
-     }});
-
-     }
-     else if (start > end) {
-     Widget.update({"_page": pageId, "index": {$gt: start, $lte: end}}, {$inc: {"index":  -1}},{multi:true},
-     function(err, sucess){
-     if(success){
-     Widget.update({"_page": pageId, "index":start}, {$set: {index: end}},
-     function(err, success){if(success){return findAllWidgetsForPage(pageId)}});
-     }});
-
-     }*/
-    // }
 
     function callback(pageId, start, end) {
         Widget.update({"_page": pageId, "index": start}, {$set: {index: end}}, function (err, success) {
